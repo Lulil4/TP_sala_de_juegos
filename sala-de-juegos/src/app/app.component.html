@@ -1,0 +1,32 @@
+<body>
+<p>
+  <mat-toolbar class="miToolbar">
+    <img
+    width="40"
+    alt="Logo"
+    src="https://static.thenounproject.com/png/198566-200.png"
+   />
+    <br>
+    <span>MISalita</span>
+    <div class="spacer"></div>
+    <button class="bMenu" mat-raised-button color="accent" routerLink="" routerLinkActive="active">Home</button>
+    <div class="spacer"></div>
+    <button class="bMenu" mat-raised-button color="accent" routerLink="juegos" routerLinkActive="active">Juegos</button>
+    <div class="spacer"></div>
+    <button class="bMenu" mat-raised-button color="accent" routerLink="acerca-de" routerLinkActive="active">Acerca de</button>
+    <div class="spacer"></div>
+  </mat-toolbar>
+</p>
+
+<div class="content" role="main">
+
+  <div class="card-container">
+    <router-outlet></router-outlet>
+  </div>
+  
+</div>
+  
+  <div class="footer">
+    <p>Gracias por usar mi página, aún está fea pero bueno, es lo que hay ・ᴥ -</p>
+  </div>
+</body>
