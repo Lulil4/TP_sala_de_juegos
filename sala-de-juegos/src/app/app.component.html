@@ -1,3 +1,6 @@
+<head>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
 <body>
 <p>
   <mat-toolbar class="miToolbar">
@@ -7,9 +10,7 @@
     src="https://static.thenounproject.com/png/198566-200.png"
    />
     <br>
-    <span>MISalita</span>
-    <div class="spacer"></div>
-    <button class="bMenu" mat-raised-button color="accent" routerLink="" routerLinkActive="active">Home</button>
+    <a class="logoApp" routerLink="" routerLinkActive="active">MISalita</a>
     <div class="spacer"></div>
     <button class="bMenu" mat-raised-button color="accent" routerLink="juegos" routerLinkActive="active">Juegos</button>
     <div class="spacer"></div>
@@ -23,7 +24,7 @@
   <div class="card-container">
     <router-outlet></router-outlet>
   </div>
-  
+
 </div>
   
   <div class="footer">
