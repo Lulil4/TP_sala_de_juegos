@@ -12,6 +12,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import { MiToolbarComponent } from './components/mi-toolbar/mi-toolbar.component';
+import { AnagramaComponent } from './components/anagrama/anagrama.component';
+import { PiedraPapelTijeraComponent } from './components/piedra-papel-tijera/piedra-papel-tijera.component';
+import { AgilidadAritmeticaComponent } from './components/agilidad-aritmetica/agilidad-aritmetica.component';
+import { AdivinaElNumeroComponent } from './components/adivina-el-numero/adivina-el-numero.component';
+import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
+import { MemotestComponent } from './components/memotest/memotest.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +26,14 @@ import {MatCardModule} from '@angular/material/card';
     JuegosComponent,
     HomeComponent,
     NotFoundComponent,
-    AcercaDeComponent
+    AcercaDeComponent,
+    MiToolbarComponent,
+    AnagramaComponent,
+    PiedraPapelTijeraComponent,
+    AgilidadAritmeticaComponent,
+    AdivinaElNumeroComponent,
+    TaTeTiComponent,
+    MemotestComponent
   ],
   imports: [
     BrowserModule,

@@ -311,16 +311,3 @@
   color: rgb(49, 48, 48);
   text-align: center;
 }
-
-body{
- background-image: url("https://fourlonglegs.com/wp-content/uploads/2020/04/unsplash-greyhound-scaled-e1586241026883.jpg");
-}
-
-.logoApp, .logoApp:visited{
-  color: #474747;
-}
-
-.logoApp:hover {
-  color: #fa91bd;
-  text-decoration: none;
-}

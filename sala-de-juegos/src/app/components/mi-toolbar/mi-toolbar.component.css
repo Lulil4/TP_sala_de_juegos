@@ -1,0 +1,12 @@
+.logoApp, .logoApp:visited{
+    color: #474747;
+}
+  
+  .logoApp:hover {
+    color: #fa91bd;
+    text-decoration: none;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
