@@ -9,11 +9,14 @@ max-height: max-content;
 
 mat-grid-list{
     width: 80vw;
-    line-height: 20vw;
 }
 
+mat-grid-tile{
+    background-color:pink;
+    border-radius:2vw;
+}
 img{ 
-    width:100%;
+    width:90%;
     cursor: pointer;
 }
 
