@@ -4,15 +4,22 @@ mat-grid-tile {
 
 .container{
 max-width: max-content;
+max-height: max-content;
 }
 
 mat-grid-list{
-    height: auto; 
     width: 80vw;
+    line-height: 20vw;
     cursor: pointer;
 }
 
 @media (orientation: portrait){
+    mat-grid-list{
+        margin-top: 0px !important;
+    }
+}
+
+@media (orientation: landscape){
     mat-grid-list{
         margin-top: 0px !important;
     }
