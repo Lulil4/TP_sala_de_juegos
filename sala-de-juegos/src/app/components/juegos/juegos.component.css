@@ -10,6 +10,10 @@ max-height: max-content;
 mat-grid-list{
     width: 80vw;
     line-height: 20vw;
+}
+
+img{ 
+    width:100%;
     cursor: pointer;
 }
 
