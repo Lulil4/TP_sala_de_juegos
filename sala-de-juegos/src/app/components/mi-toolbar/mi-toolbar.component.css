@@ -1,12 +1,17 @@
-.logoApp, .logoApp:visited{
-    color: #474747;
-}
-  
-  .logoApp:hover {
-    color: #fa91bd;
-    text-decoration: none;
-}
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 .spacer {
     flex: 1 1 auto;
+}
+
+mat-toolbar{
+    background-image: linear-gradient(to right, rgb(255, 74, 113),rgb(255, 167, 229));
+}
+
+button{
+    color: black;
+}
+
+button:hover{
+    color: lightskyblue;
 }

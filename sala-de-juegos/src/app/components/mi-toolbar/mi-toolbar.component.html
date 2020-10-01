@@ -1,4 +1,4 @@
-<mat-toolbar class="miToolbar">
+<!--<mat-toolbar class="miToolbar">
     <img
     width="30vw"
     alt="Logo"
@@ -11,4 +11,30 @@
     <div class="spacer"></div>
     <button class="bMenu" mat-raised-button color="accent" routerLink="acerca-de" routerLinkActive="active">Acerca de</button>
     <div class="spacer"></div>
+</mat-toolbar>-->
+
+
+<mat-toolbar fxLayout="row">
+    <mat-icon>
+        <img width="30vw" src="https://static.thenounproject.com/png/198566-200.png">
+    </mat-icon>
+
+    <button mat-button routerLink="{{item.ruta}}" routerLinkActive="active" *ngFor="let item of menuItems" fxHide.xs>
+        <mat-icon class="mr">{{item.icono}}</mat-icon>
+        {{item.texto}}
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+        <mat-icon >more_vert</mat-icon>
+    </button>
+
+    <mat-menu class="mat-menu" #dropMenu="matMenu">
+        <ng-container *ngFor="let item of menuItems">
+            <button mat-menu-item routerLink="{{item.ruta}}" routerLinkActive="active">
+                <mat-icon style="color: white;" class="mr">{{item.icono}}</mat-icon>
+                {{item.texto}}
+            </button>
+            <mat-divider width="20vw"></mat-divider>
+        </ng-container>
+    </mat-menu>
 </mat-toolbar>

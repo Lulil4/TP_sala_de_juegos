@@ -1,1 +1,24 @@
-<p>piedra-papel-tijera works!</p>
+<div class="tabla-puntos">
+    <div class="marcoJugadores" id="puntosUsuario">Vos: {{seleccionUsuario}}</div>
+    <div class="marcoJugadores" id="puntosPC">Perro: {{seleccionPC}}</div>
+    <span id="usuario-puntos">{{puntosUsuario}}</span><span id="dos-puntos">:</span><span id="PC-puntos">{{puntosPC}}</span>
+  </div>
+  
+  <div class="resultado">
+    <p *ngIf="estado">{{seleccionUsuario}} {{accion}} {{seleccionPC}}{{estado}} </p>
+  </div>
+  
+  <div class="elecciones">
+    <div class="eleccion" id="piedra">
+      <img src="../assets/img/piedra.png" (click)='turnoUsuario("PIEDRA")'>
+    </div>
+    <div class="eleccion" id="papel">
+      <img src="../assets/img/papel.png" (click)='turnoUsuario("PAPEL")'>
+    </div>
+    <div class="eleccion" id="tijeras">
+      <img src="../assets/img/tijeras.png" (click)='turnoUsuario("TIJERAS")'>
+    </div>
+  </div>
+  
+  <p id="mensaje-accion" *ngIf="!estado">Es tu turno</p>
+  <p id="mensaje-accion" *ngIf="estado">Espera...</p>

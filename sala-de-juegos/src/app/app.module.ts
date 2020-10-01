@@ -19,6 +19,11 @@ import { AgilidadAritmeticaComponent } from './components/agilidad-aritmetica/ag
 import { AdivinaElNumeroComponent } from './components/adivina-el-numero/adivina-el-numero.component';
 import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './components/memotest/memotest.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,10 @@ import { MemotestComponent } from './components/memotest/memotest.component';
     MatToolbarModule,
     MatGridListModule,
     MatCardModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatIconModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JuegosComponent implements OnInit {
 
-  constructor() { }
+  hide : boolean = false;
+
+  constructor() { 
+    this.hide = false;}
 
   ngOnInit(): void {
+    this.hide = false;
+
   }
 
+  ocultarGrid(){
+    this.hide = true;
+  }
 }

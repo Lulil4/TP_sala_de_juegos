@@ -1,0 +1,81 @@
+.tabla-puntos{
+    margin: 3vw auto;
+    color: white;
+    width: 50vw;
+    height:7vw;
+    border-radius: 2vw;
+    text-align: center;
+    font-size: 8vw;
+    padding: 3vw 6vw;
+    position: relative;
+    border: double 1.5vw;
+    border-image: url("../../../assets/img/border.png") 27 round stretch;
+  }
+  
+  .marcoJugadores{
+    background: rgb(255, 2, 158);
+    font-size: 2vw;
+    padding: 1.5vw 2.5vw;
+    border-radius:2vw;
+  }
+  
+  #puntosUsuario{
+    position: absolute;
+    top: 1vw;
+    left: -2.5vw;
+  }
+  #puntosPC{
+    position: absolute;
+    top: 1vw;
+    right: -2.5vw;
+  }
+  
+  
+  .resultado{
+    font-size: 3vw;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .elecciones{
+    text-align: center;
+    margin-top: 0.5vw;
+  }
+  
+  .eleccion{
+    display: inline-block;
+    border: 1vw solid rgb(255, 149, 223);
+    border-radius: 50%;
+    margin: 2.5vw;
+  }
+  
+  .eleccion:hover{
+    cursor: pointer;
+    background: rgb(255, 101, 191);
+  }
+  
+  #mensaje-accion{
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 3vw;
+    margin: 1vw 0;
+  }
+
+  img{
+    height:7vw;
+    width:7vw;
+  }
+
+  #usuario-puntos{
+    color:rgb(124, 255, 119);
+  }
+
+  #PC-puntos{
+    color:rgb(255, 110, 134);
+  }
+
+  #dos-puntos{
+    color: rgb(255, 44, 174);
+  }
