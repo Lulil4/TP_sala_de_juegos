@@ -1,0 +1,50 @@
+mat-card{
+    text-align:center;
+    background-color: palevioletred;
+}
+
+mat-card-title{
+    padding-top:2vw;
+    color:white;
+    font-size:4vw;
+}
+
+mat-card-subtitle{
+    padding-top:1.5vw;
+    color:rgb(0, 0, 0);
+    font-weight: 500;
+    font-size:2vw;
+}
+
+input{
+    font-size:2vw;
+    color: rgb(185, 247, 255);
+}
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(255, 180, 249) !important;
+}
+
+mat-label{
+    color:rgb(255, 196, 255);
+}
+
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: pink !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: rgb(255, 185, 228) !important;
+} 
+
+p{
+    font-size:1.7vw;
+    font-style: italic;
+}
+
+.btnChequear{
+    margin-bottom:4vw;
+    margin-top:1.5vw;
+}

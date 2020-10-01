@@ -45,7 +45,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionUsuario = usuario;
     this.seleccionPC = PC;
     this.accion = 'le gana a';
-    this.estado = '. Ganaste!';
+    this.estado = '. Ganaste! Grrr';
     this.limpiar();
   }
 
@@ -55,7 +55,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionUsuario = usuario;
     this.seleccionPC = PC;
     this.accion = 'perdio ante';
-    this.estado = '. Perdiste!';
+    this.estado = '. A casa malo!';
     this.limpiar();
   }
 
@@ -63,7 +63,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionUsuario = usuario;
     this.seleccionPC = PC;
     this.accion = ' y ';
-    this.estado = ', eligieron lo mismo. Te toca';
+    this.estado = ', eres perro también? Te toca';
     this.limpiar();
   }
 

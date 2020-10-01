@@ -1,1 +1,22 @@
-<p>adivina-el-numero works!</p>
+<div class="container"> 
+    <mat-card>
+        <mat-card-title>Podrás adivinarlo?</mat-card-title>
+        <mat-card-subtitle>Psst, será un numero entre el 1 y el 100</mat-card-subtitle>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Elige un número!</mat-label>
+                <input matInput type="number"  [(ngModel)]="numeroIngresado" name="numerito">
+            </mat-form-field>
+            <p>
+                <button mat-raised-button class="btnChequear" color="accent" (click)="verificarIntento()">Chequear</button>
+            </p>
+            <div> 
+            <p *ngIf="casi">{{mensajeCasi}}</p>
+            <p *ngIf="ganador">Ganaste!</p> 
+            </div>
+            <p>Elegiste... {{numeroIngresado}}</p> 
+            <p>Cantidad de intentos:<span>{{contIntentos}}</span></p> 
+            <button mat-raised-button style="margin-bottom:4vw;" color="primary" (click)="iniciar()">Quiero uno nuevo!</button> 
+        </mat-card-content>
+    </mat-card>
+</div> 

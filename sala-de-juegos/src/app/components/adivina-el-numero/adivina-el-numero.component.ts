@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-adivina-el-numero',
   templateUrl: './adivina-el-numero.component.html',
   styleUrls: ['./adivina-el-numero.component.css']
 })
-export class AdivinaElNumeroComponent implements OnInit {
+export class AdivinaElNumeroComponent{
+  desviacion: number; 
+  contIntentos: number; 
+  numeroSecreto: number; 
+  numeroIngresado: number; 
+  mensajeCasi : string;
+  ganador : boolean = false;
+  casi : boolean = false;
+  
+  constructor() { 
+    this.iniciar(); 
+  } 
 
-  constructor() { }
+  iniciar() { 
+    this.contIntentos = 0; 
+    this.numeroSecreto = Math.floor((Math.random() * 100) + 1); 
+    this.numeroIngresado = null; 
+    this.desviacion = null; 
+    this.casi = false;
+    this.ganador = false;
+  } 
+  verificarIntento() { 
+    this.desviacion = this.numeroSecreto - this.numeroIngresado; 
+    this.contIntentos = this.contIntentos + 1; 
 
-  ngOnInit(): void {
-  }
-
+    if (this.desviacion < 0){
+      this.mensajeCasi = "Muy alto! Bajate del pony";
+      this.casi = true; 
+    }
+    else if(this.desviacion > 0){
+      this.mensajeCasi = "Muy chico, dale más";
+      this.casi = true; 
+    }
+    else{
+      this.casi = false;
+      this.ganador = true;
+    }
+  } 
 }

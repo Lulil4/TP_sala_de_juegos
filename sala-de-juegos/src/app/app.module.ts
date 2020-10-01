@@ -23,7 +23,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatMenuModule,
     MatDividerModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
