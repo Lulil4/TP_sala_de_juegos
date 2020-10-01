@@ -20,4 +20,8 @@ export class JuegosComponent implements OnInit {
   ocultarGrid(){
     this.hide = true;
   }
+
+  scrollTop(){
+    window.scroll(0,0);
+  }
 }
