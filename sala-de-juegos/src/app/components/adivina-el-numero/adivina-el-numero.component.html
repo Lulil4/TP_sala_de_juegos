@@ -5,18 +5,18 @@
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Elige un número!</mat-label>
-                <input matInput type="number"  [(ngModel)]="numeroIngresado" name="numerito">
+                <input matInput type="text"  [(ngModel)]="numeroIngresado" name="numerito">
             </mat-form-field>
             <p>
                 <button mat-raised-button class="btnChequear" color="accent" (click)="verificarIntento()">Chequear</button>
             </p>
             <div> 
-            <p *ngIf="casi">{{mensajeCasi}}</p>
-            <p *ngIf="ganador">Ganaste!</p> 
-            </div>
             <p>Elegiste... {{numeroIngresado}}</p> 
-            <p>Cantidad de intentos:<span>{{contIntentos}}</span></p> 
-            <button mat-raised-button style="margin-bottom:4vw;" color="primary" (click)="iniciar()">Quiero uno nuevo!</button> 
+            </div>
+            <p  class="pMid" *ngIf="casi">{{mensajeCasi}}</p>
+            <p *ngIf="ganador">Ganaste!</p> 
+            <p class="pBott">Cantidad de intentos:<span>{{contIntentos}}</span></p> 
+            <button mat-raised-button class="btnOtra" style="margin-bottom:4vw;" color="primary" (click)="iniciar()">Quiero uno nuevo!</button> 
         </mat-card-content>
     </mat-card>
 </div> 

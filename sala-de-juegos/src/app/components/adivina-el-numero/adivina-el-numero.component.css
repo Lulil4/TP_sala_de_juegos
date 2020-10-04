@@ -10,14 +10,15 @@ mat-card-title{
 }
 
 mat-card-subtitle{
-    padding-top:1.5vw;
+    padding-top:2vw;
     color:rgb(0, 0, 0);
     font-weight: 500;
     font-size:2vw;
 }
 
 input{
-    font-size:2vw;
+    height:5vw;
+    font-size:4vw;
     color: rgb(185, 247, 255);
 }
 ::ng-deep .mat-focused .mat-form-field-label {
@@ -39,12 +40,24 @@ mat-label{
     background-color: rgb(255, 185, 228) !important;
 } 
 
+mat-card-subtitle{
+    font-size: 3vw;
+}
 p{
-    font-size:1.7vw;
+    font-size:3vw;
     font-style: italic;
 }
 
 .btnChequear{
     margin-bottom:4vw;
     margin-top:1.5vw;
+}
+
+.pMid{
+   margin-top:4vw;
+}
+
+.pBott{
+    margin-top: 5vw;
+    margin-bottom:2vw;
 }
