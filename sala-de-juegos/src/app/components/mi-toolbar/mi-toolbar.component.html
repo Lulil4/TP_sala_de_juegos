@@ -31,7 +31,7 @@
     <mat-menu class="mat-menu" #dropMenu="matMenu">
         <ng-container *ngFor="let item of menuItems">
             <button mat-menu-item routerLink="{{item.ruta}}" routerLinkActive="active">
-                <mat-icon style="color: white;" class="mr">{{item.icono}}</mat-icon>
+                <mat-icon >{{item.icono}}</mat-icon>
                 {{item.texto}}
             </button>
             <mat-divider width="20vw"></mat-divider>
