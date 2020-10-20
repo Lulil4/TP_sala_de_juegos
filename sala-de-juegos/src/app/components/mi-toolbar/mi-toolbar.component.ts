@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from '../../interfaces/menu-item';
+import { ItemsToolbarService } from "../../services/items-toolbar.service";
 
 @Component({
   selector: 'app-mi-toolbar',
@@ -8,27 +9,13 @@ import { MenuItem } from '../../interfaces/menu-item';
 })
 export class MiToolbarComponent implements OnInit {
 
-  menuItems: MenuItem[] = [
-    {
-      texto: 'MISalita',
-      icono: "home",
-      ruta: ""
-    },
-    {
-      texto: "Juegos",
-      icono: "sports_esports",
-      ruta: "juegos"
-    },
-    {
-      texto: "Acerca de...",
-      icono: "account_circle",
-      ruta: "acerca-de"
-    }
-  ]
+  menuItems: MenuItem[] = this.items.menuItems;
 
-  constructor() { }
+  constructor(private items : ItemsToolbarService) { 
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyCoGxqehsjgRhGGCU840hjwcKG9y1h8UaQ",
+    authDomain: "misalita-fireapp.firebaseapp.com",
+    databaseURL: "https://misalita-fireapp.firebaseio.com",
+    projectId: "misalita-fireapp",
+    storageBucket: "misalita-fireapp.appspot.com",
+    messagingSenderId: "590607604322",
+    appId: "1:590607604322:web:472249a166a7c51da44f3b"
+  },
 };
 
 /*

@@ -1,0 +1,44 @@
+mat-card{
+    width:40vw;
+    height:30vw;
+    color:black;
+    background-color: rgba(255, 125, 186, 0.562);
+}
+
+mat-form-field{
+    width:40vw;
+}
+
+h2{
+    font-size:5vw;
+    margin-top:2vw;
+}
+
+button{
+    margin-top:2vw;
+    width:25vw;
+    height:10vw;
+    font-size:2vw;
+}
+
+
+.spin{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+
+.divSpinner{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25vw;
+    width: 25vw;
+    z-index: 9998;
+    background-color: whitesmoke;
+    border-radius: 10%;
+}

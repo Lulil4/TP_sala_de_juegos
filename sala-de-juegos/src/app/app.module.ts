@@ -26,6 +26,13 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { environment } from "../environments/environment";
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegistroComponent } from './components/registro/registro.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +46,10 @@ import { FormsModule } from '@angular/forms';
     AgilidadAritmeticaComponent,
     AdivinaElNumeroComponent,
     TaTeTiComponent,
-    MemotestComponent
+    MemotestComponent,
+    LoginComponent,
+    LogoutComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +64,10 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     FlexLayoutModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

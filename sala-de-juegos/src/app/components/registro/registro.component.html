@@ -1,0 +1,40 @@
+<mat-card class="form">
+         <mat-label id="itemError" [hidden]=agregado>
+            <p style="text-align:center;">El usuario fue agregado correctamente!</p>
+        </mat-label>
+        <br>
+        <mat-form-field>
+            <input type="text"
+            matInput
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Correo">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input type="text"
+            matInput
+            [(ngModel)]="usuario"
+            name="usuario"
+            placeholder="Usuario">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input type="password"
+            matInput
+            [(ngModel)]="clave"
+            name="clave"
+            placeholder="Clave">
+        </mat-form-field>
+        <br>
+        <mat-label id="itemError" [hidden]=hide>
+            <p style="text-align:center;" text-wrap color="danger">{{mensaje}}</p>
+        </mat-label>
+        <br>
+        <button mat-raised-button color="accent" (click)="darDeAlta()">Aceptar</button>
+        <div class="divSpinner" *ngIf="spinner">
+            <div class="spin">
+              <img src="../../../assets/gif/preloader.gif">
+            </div>
+        </div>
+</mat-card>

@@ -12,14 +12,21 @@ import { AdivinaElNumeroComponent } from './components/adivina-el-numero/adivina
 import { TaTeTiComponent } from './components/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './components/memotest/memotest.component';
 
+import { LoginComponent } from "./components/login/login.component";
+import { TokenGuard } from "../app/guards/token.guard";
+import { LogoutComponent } from './components/logout/logout.component';
+import { UsuarioIniciadoGuard } from "../app/guards/usuario-iniciado.guard";
+import { RegistroComponent } from "./components/registro/registro.component";
 const routes: Routes = [
   {
     path:"juegos",
     component: JuegosComponent,
+    canActivate:[TokenGuard],
     children:[
       {
         path: "anagrama",
         component: AnagramaComponent,
+        canActivate:[TokenGuard]
       },
       {
         path: "piedra-papel-tijera",
@@ -48,13 +55,28 @@ const routes: Routes = [
     component: AcercaDeComponent,
   },
   {
+    path:"login",
+    component: LoginComponent,
+    canActivate:[UsuarioIniciadoGuard]
+  },
+  {
     path:"",
     component: HomeComponent,
   },
   {
+    path:"logout",
+    component: LogoutComponent,
+    canActivate:[UsuarioIniciadoGuard]
+  },  
+  {
+    path:"registro",
+    component: RegistroComponent,
+    canActivate:[UsuarioIniciadoGuard]
+  },
+  {
     path:"**",
     component: NotFoundComponent,
-  }
+  },
 ];
 
 @NgModule({
