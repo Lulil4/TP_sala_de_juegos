@@ -40,7 +40,6 @@ export class RegistroComponent implements OnInit {
         .then(() =>{ 
         this.agregado = false;
         this.limpiar()
-        console.log("sale de agregar");
         ;})
         .catch((error) => {
         if (error.code == "auth/weak-password"){
@@ -49,8 +48,12 @@ export class RegistroComponent implements OnInit {
         else if(error.code == "auth/email-already-in-use"){
           this.mensaje = "El correo ya existe";
         }
+        else if(error.code == "auth/invalid-email"){
+          this.mensaje = "El correo es inválido";
+        }
         else{
           this.mensaje = error;
+          console.log(error.code);
         }
         });
         this.hide = false;
