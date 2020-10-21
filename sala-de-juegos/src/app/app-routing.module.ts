@@ -66,7 +66,6 @@ const routes: Routes = [
   {
     path:"logout",
     component: LogoutComponent,
-    canActivate:[UsuarioIniciadoGuard]
   },  
   {
     path:"registro",
