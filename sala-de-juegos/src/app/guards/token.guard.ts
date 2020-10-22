@@ -13,6 +13,7 @@ export class TokenGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.auth.logged;
+    let logged = this.auth.verificarLogueo();
+    return logged;
   }  
 }

@@ -8,7 +8,7 @@
                 <input matInput type="text"  [(ngModel)]="numeroIngresado" name="numerito">
             </mat-form-field>
             <p>
-                <button mat-raised-button class="btnChequear" color="accent" (click)="verificarIntento()">Chequear</button>
+                <button mat-raised-button class="btnChequear" color="accent" (click)="verificarIntento()" *ngIf="mostrarChequear">Chequear</button>
             </p>
             <div> 
             <p>Elegiste... {{numeroIngresado}}</p> 

@@ -13,7 +13,8 @@ export class AdivinaElNumeroComponent{
   mensajeCasi : string;
   ganador : boolean = false;
   casi : boolean = false;
-  
+  mostrarChequear : boolean = true;
+
   constructor() { 
     this.iniciar(); 
   } 
@@ -25,7 +26,9 @@ export class AdivinaElNumeroComponent{
     this.desviacion = null; 
     this.casi = false;
     this.ganador = false;
+    this.mostrarChequear = true;
   } 
+
   verificarIntento() { 
     this.desviacion = this.numeroSecreto - this.numeroIngresado; 
     this.contIntentos = this.contIntentos + 1; 
@@ -41,6 +44,7 @@ export class AdivinaElNumeroComponent{
     else{
       this.casi = false;
       this.ganador = true;
+      this.mostrarChequear = false;
     }
   } 
 }

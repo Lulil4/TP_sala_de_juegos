@@ -74,4 +74,10 @@ export class LoginComponent implements OnInit {
     this.pwd="";
     this.hide = true;
   }
+
+  loginAdmin(){
+    this.email = "admin@admin.com";
+    this.pwd = "123456";
+    this.onSubmitLogin();
+  }
 }

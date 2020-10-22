@@ -26,7 +26,6 @@ const routes: Routes = [
       {
         path: "anagrama",
         component: AnagramaComponent,
-        canActivate:[TokenGuard]
       },
       {
         path: "piedra-papel-tijera",
@@ -57,7 +56,6 @@ const routes: Routes = [
   {
     path:"login",
     component: LoginComponent,
-    canActivate:[UsuarioIniciadoGuard]
   },
   {
     path:"",
@@ -70,7 +68,6 @@ const routes: Routes = [
   {
     path:"registro",
     component: RegistroComponent,
-    canActivate:[UsuarioIniciadoGuard]
   },
   {
     path:"**",

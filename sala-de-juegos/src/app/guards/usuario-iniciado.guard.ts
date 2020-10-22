@@ -13,8 +13,10 @@ export class UsuarioIniciadoGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      /*
       console.log(this.auth.logged);
-    return !(this.auth.logged);
+    return !(this.auth.logged);*/
+    return true;
   }
   
 }
