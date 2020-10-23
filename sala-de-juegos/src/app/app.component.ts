@@ -10,8 +10,11 @@ export class AppComponent {
   title = 'sala-de-juegos';
 
   constructor(private auth : AuthService, private toolbar : ItemsToolbarService){
-    if (this.auth.verificarLogueo()){
-      this.toolbar.cambiarToolbarLogueado();
+      this.auth.verificarLogueo().then(res=>{
+        if (res){
+        this.toolbar.cambiarToolbarLogueado();
+        }
+      });
     }
-  }
 }
+
