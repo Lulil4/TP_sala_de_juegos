@@ -11,11 +11,11 @@
         <mat-card *ngIf="ganador">
             <mat-card-content>
                 <h1 class= "textoGano" >
-                    Jugador {{ ganador }} ganó!!!
+                    Ganador: {{ ganador }}!
                 </h1>
             </mat-card-content>
         </mat-card>
-        <button mat-raised-button status="danger" (click)="nuevoJuego()" >Jugar otra vez</button>
+        <button mat-raised-button status="danger" (click)="nuevoJuego()" [disabled]="bloqueoNuevoJuego">Jugar otra vez</button>
     </div>    
 
 </div>
