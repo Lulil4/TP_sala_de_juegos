@@ -3,7 +3,6 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { ItemsToolbarService } from "../services/items-toolbar.service";
 import { AngularFirestore } from "@angular/fire/firestore";
-
 import { first } from 'rxjs/operators';
 
 @Injectable({
@@ -17,9 +16,6 @@ export class AuthService {
       this.authState = state;
     });
 
-    if (this.verificarLogueo()){
-      this.toolbar.cambiarToolbarLogueado();
-    }
   }
 
   getToken(){
@@ -65,7 +61,6 @@ export class AuthService {
     return new Promise((resolve, rejected) => {
       this.auth.authState.pipe(first()).toPromise()
       .then(user =>{
-        console.log(user);
         let logged = false;
         if (user != null){
           logged = true;

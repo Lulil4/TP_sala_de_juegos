@@ -56,11 +56,15 @@
   }
   
   #mensaje-accion{
-    text-align: center;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
     font-size: 3vw;
     margin: 1vw 0;
+
+    text-align: center;
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
   }
 
   img{
@@ -78,4 +82,13 @@
 
   #dos-puntos{
     color: rgb(255, 44, 174);
+  }
+
+  p{
+    text-align: center;
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
   }

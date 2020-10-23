@@ -1,1 +1,21 @@
-<p>ta-te-ti works!</p>
+<h1>Le toca a: Jugador {{ jugador }} </h1>
+
+<div class="divGrid">   
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let val of cuadros; let i = index" >
+            <app-cuadro [bloqueado]="bloqueoTurnos"  [value]="val" (click)="turnoUsuario(i)"></app-cuadro>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div>
+        <mat-card *ngIf="ganador">
+            <mat-card-content>
+                <h1 class= "textoGano" >
+                    Jugador {{ ganador }} ganó!!!
+                </h1>
+            </mat-card-content>
+        </mat-card>
+        <button mat-raised-button status="danger" (click)="nuevoJuego()" >Jugar otra vez</button>
+    </div>    
+
+</div>

@@ -8,7 +8,7 @@
     <p *ngIf="estado">{{seleccionUsuario}} {{accion}} {{seleccionPC}}{{estado}} </p>
   </div>
   
-  <div class="elecciones">
+  <div class="elecciones" *ngIf="mostrarOpciones">
     <div class="eleccion" id="piedra">
       <img src="../assets/img/piedra.png" (click)='turnoUsuario("PIEDRA")'>
     </div>
@@ -20,5 +20,7 @@
     </div>
   </div>
   
-  <p id="mensaje-accion" *ngIf="!estado">Es tu turno</p>
-  <p id="mensaje-accion" *ngIf="estado">Espera...</p>
+  <p id="mensaje-accion" *ngIf="estado">Es tu turno</p>
+  <div class="divEspera" *ngIf="mostrarEspera">
+    <p id="mensaje-accion" *ngIf="!estado">Espera...</p>
+  </div>

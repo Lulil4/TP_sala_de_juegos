@@ -1,0 +1,56 @@
+
+
+h1{
+        text-align: center;
+        color:plum;
+        font-size: 5vw;
+        font-weight: bolder;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+}
+
+app-cuadro{
+    background-color:pink;
+    height: 12vw;
+    width:12vw;
+}
+
+mat-grid-list{
+    width: 37vw;
+    height:37vw;
+}
+
+mat-grid-tile{
+    background-color:pink;
+    border-radius:2vw;
+}
+
+
+.divGrid{
+    height:37vw;
+    margin-top:2vw;
+    margin-bottom:2vw;
+    display:flex;
+    justify-content: center;
+}
+
+button{
+    margin-top:10vw;
+    margin-left:3vw;
+    font-size:4vw;
+    width: 40vw;
+    height:10vw;
+    background-color:pink;
+}
+
+.textoGano{
+    color:rgb(5, 255, 255);
+    font-size:4vw;
+}
+
+mat-card{
+    margin-top:3vw;
+    margin-left:3vw;
+    background-color:rgb(0, 231, 0);
+    padding:2vw;
+}

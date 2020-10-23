@@ -13,6 +13,8 @@ export class PiedraPapelTijeraComponent implements OnInit{
   seleccionPC: string;
   accion: string;
   estado: string;
+  mostrarOpciones : boolean = true;
+  mostrarEspera : boolean = false;
 
   tacticas = [
     'PIEDRA',
@@ -24,20 +26,22 @@ export class PiedraPapelTijeraComponent implements OnInit{
   }
 
   turnoUsuario(tactica: string): void {
+    this.limpiar();
+    this.mostrarOpciones = false;
     this.seleccionUsuario = tactica;
-    setTimeout( () => {
+    setTimeout(() => {// no anda
       const r = Math.floor(Math.random() * 3);
       this.seleccionPC = this.tacticas[r];
       this.verResultado();
-    }, 1500);
+      this.mostrarOpciones = true;
+    }, 2000);
   }
-
+  
   limpiar() {
-    setTimeout(() => {
+      this.mostrarEspera = true;
       this.estado = '';
       this.seleccionUsuario = '';
       this.seleccionPC = '';
-    }, 3000);
   }
 
   ganar(usuario, PC) {
@@ -46,7 +50,6 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = 'le gana a';
     this.estado = '. Ganaste! Grrr';
-    this.limpiar();
   }
 
 
@@ -56,7 +59,6 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = 'perdio ante';
     this.estado = '. A casa malo!';
-    this.limpiar();
   }
 
   darTurno(usuario, PC) {
@@ -64,7 +66,6 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = ' y ';
     this.estado = ', eres perro también? Te toca';
-    this.limpiar();
   }
 
   verResultado() {
@@ -85,7 +86,6 @@ export class PiedraPapelTijeraComponent implements OnInit{
         this.darTurno(seleccionUsuario, seleccionPC);
         break;
     }
-
   }
 
 }

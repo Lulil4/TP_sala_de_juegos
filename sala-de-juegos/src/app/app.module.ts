@@ -32,6 +32,7 @@ import { environment } from "../environments/environment";
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { CuadroComponent } from './components/ta-te-ti/cuadro/cuadro.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RegistroComponent } from './components/registro/registro.component';
     MemotestComponent,
     LoginComponent,
     LogoutComponent,
-    RegistroComponent
+    RegistroComponent,
+    CuadroComponent
   ],
   imports: [
     BrowserModule,
