@@ -1,1 +1,17 @@
-<p>memotest works!</p>
+<div class="flex">
+    <h2>Jugador 1: {{paresUsuario}} <span>PC: {{paresPC}}</span></h2>  
+    <button mat-raised-button color="accent" (click)="jugarOtraVez();" [disabled]="bloqueoJugar">Jugar otra vez</button>
+</div> 
+<div [hidden]="ocultarResultado">
+    <h2>{{textoResultado}}</h2>
+</div>
+<div [hidden]="ocultarEspera">
+    <h2 class="textoEspera">Turno del contrincante...</h2>
+</div>
+<div class="divGrid">
+    <mat-grid-list cols="3" rowHeight="1:1" gutterSize="15px">
+        <mat-grid-tile *ngFor="let carta of cartas; let i = index">
+            <app-carta [bloqueoPropio]="carta.bloqueoPropio" [cartaElegida]="carta" (click)="hacerMovimiento(i)"></app-carta>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

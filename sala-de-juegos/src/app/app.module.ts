@@ -33,6 +33,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CuadroComponent } from './components/ta-te-ti/cuadro/cuadro.component';
+import { CartaComponent } from './components/memotest/carta/carta.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CuadroComponent } from './components/ta-te-ti/cuadro/cuadro.component';
     LoginComponent,
     LogoutComponent,
     RegistroComponent,
-    CuadroComponent
+    CuadroComponent,
+    CartaComponent
   ],
   imports: [
     BrowserModule,

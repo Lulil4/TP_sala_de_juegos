@@ -1,0 +1,46 @@
+
+mat-grid-list{
+    width: 60vw;
+}
+
+mat-grid-tile{
+    background-color:rgb(202, 202, 202);
+    border-radius:2vw;
+}
+
+
+.divGrid{
+    height:50vw;
+    margin-top:2vw;
+    margin-bottom:2vw;
+    display:flex;
+    justify-content: center;
+}
+
+h2{
+    text-align: center;
+    color:rgb(255, 43, 142);
+    font-size: 4vw;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+span{
+    margin-left:5vw;
+    color:rgb(25, 0, 255);
+}
+
+.textoEspera{
+    margin-top:1vw;
+    color:rgb(160, 160, 160);
+}
+
+.flex{
+    display:flex;
+    justify-content: center;
+}
+
+button{
+    margin-left:2vw;
+}
