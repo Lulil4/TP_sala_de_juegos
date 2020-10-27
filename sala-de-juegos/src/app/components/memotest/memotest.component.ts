@@ -49,33 +49,36 @@ export class MemotestComponent implements OnInit {
   }
 
   turnoUsuario(indexCarta){
-    if (this.cartasDadasVuelta.length == 0){
-      this.cartas[indexCarta].colorJugador = "accent";
-      this.cartas[indexCarta].bloqueoPropio = true;
-      this.cartasDadasVuelta.splice(indexCarta, 1, this.cartas[indexCarta]);
-     }
-    else if (this.cartasDadasVuelta.length == 1){
-      this.cartas[indexCarta].colorJugador = "accent";
-      this.cartas[indexCarta].bloqueoPropio = true;
-      this.cartasDadasVuelta.splice(indexCarta, 1, this.cartas[indexCarta]);
-      this.bloquearCartas();
-      setTimeout(() => {
-        if (this.verificarPar()){ //aca
-          this.paresUsuario++; 
-          if (!this.verificarSiQuedanCartas()){
-            this.verResultado();
+    if(this.cartas[indexCarta].bloqueoPropio == false){
+      if (this.cartasDadasVuelta.length == 0){
+        this.cartas[indexCarta].colorJugador = "accent";
+        this.cartas[indexCarta].bloqueoPropio = true;
+        this.cartasDadasVuelta.splice(indexCarta, 1, this.cartas[indexCarta]);
+       }
+      else if (this.cartasDadasVuelta.length == 1){
+        this.cartas[indexCarta].colorJugador = "accent";
+        this.cartas[indexCarta].bloqueoPropio = true;
+        this.cartasDadasVuelta.splice(indexCarta, 1, this.cartas[indexCarta]);
+        this.bloquearCartas();
+        setTimeout(() => {
+          if (this.verificarPar()){ 
+            this.paresUsuario++; 
+            if (!this.verificarSiQuedanCartas()){
+              this.verResultado();
+            }
+            
           }
-        }
-        this.desbloquearCartas();
-
-        if (this.verificarSiQuedanCartas()){  
-          this.bloquearCartas();
-          this.ocultarEspera = false;
-          setTimeout(() => {
-            this.turnoPC(); 
-          }, 2000);
-        }
-      }, 2000);
+          this.desbloquearCartas();
+          
+          if (this.verificarSiQuedanCartas()){  
+            this.bloquearCartas();
+            this.ocultarEspera = false;
+            setTimeout(() => {
+              this.turnoPC(); 
+            }, 2000);
+          }
+        }, 2000);
+      }
     }
   }
 
@@ -91,9 +94,10 @@ export class MemotestComponent implements OnInit {
       rand = Math.random() * (6 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
+        console.log(indexCarta); 
         this.cartas[indexCarta].colorJugador = "accent";
         this.cartas[indexCarta].bloqueoPropio = true;
-        this.cartasDadasVuelta.push(this.cartas[indexCarta]);    
+        this.cartasDadasVuelta.push(this.cartas[indexCarta]);   
         break; 
       }
     }
@@ -102,6 +106,7 @@ export class MemotestComponent implements OnInit {
       rand = Math.random() * (6 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
+        console.log(indexCarta); 
         this.cartas[indexCarta].colorJugador = "accent";
         this.cartas[indexCarta].bloqueoPropio = true;
         this.cartasDadasVuelta.push(this.cartas[indexCarta]);
@@ -109,6 +114,7 @@ export class MemotestComponent implements OnInit {
       }
     }
 
+    console.log("sgte");
     setTimeout(() => {
       if (this.verificarPar()){ 
         this.paresPC++;
