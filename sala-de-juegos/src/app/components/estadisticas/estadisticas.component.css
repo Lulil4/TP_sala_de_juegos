@@ -1,27 +1,20 @@
-mat-card{
-    width:60vw;
-    height:auto;
-    color:black;
-    background-color: rgba(255, 133, 184, 0.678);
-    text-align:center;
-}
-
-mat-label{
+table{
     text-align: center;
-    justify-content: center;
+    border-spacing: 3vw;
+    width:85vw;
+    margin-left:0vw;
 }
 
-mat-form-field{
-    color:rgb(0, 0, 0);
-    font-weight: bold;
-    width:40vw;
+mat-card{
+    width:85vw;
+    margin-bottom:5vh;
+    background-color: burlywood;
 }
 
-
-placeholder{
-    color:blue;
+.divEmail{
+    width:25vw;
+    word-wrap: break-word;
 }
-
 
 .spin{
     position: fixed;

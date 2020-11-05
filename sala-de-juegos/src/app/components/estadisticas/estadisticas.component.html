@@ -1,0 +1,67 @@
+<mat-card>
+    <mat-card-title>
+        Piedra papel o tijeras
+    </mat-card-title>
+    <table>
+        <th>Correo</th>
+        <th>Arma más usada</th>
+        <th>Win rate</th>
+        <tr *ngFor="let e of est_piedrapapelotijeras">
+            <td><div class="divEmail">{{e.email}}</div></td>
+            <td>{{e.arma}}</td>
+            <td>{{e.resultado}} % </td>
+        </tr>
+    </table>
+</mat-card>
+<mat-card>
+    <mat-card-title>
+        Ta Te Ti
+    </mat-card-title>
+    <table>
+        <th>Correo</th>
+        <th>Tiempo promedio</th>
+        <th>Win rate</th>
+        <tr *ngFor="let e of est_tateti">
+            <td><div class="divEmail">{{e.email}}</div></td>
+            <td>{{e.tiempo}}</td>
+            <td>{{e.resultado}} %</td>
+        </tr>
+    </table>
+</mat-card>
+<mat-card>
+    <mat-card-title>
+        Memotest
+    </mat-card-title>
+    <table>
+        <th>Correo</th>
+        <th>Tiempo promedio</th>
+        <th>Promedio de intentos</th>
+        <th>Win rate</th>
+        <tr *ngFor="let e of est_memotest">
+            <td><div style="width:20vw; word-wrap: break-word; text-align:center">{{e.email}}</div></td>
+            <td>{{e.tiempo}}</td>
+            <td>{{e.intentos}}</td>
+            <td>% {{e.resultado}}</td>
+        </tr>
+    </table>
+</mat-card>
+<mat-card>
+    <mat-card-title>
+        Adivinar el numero
+    </mat-card-title>
+    <table>
+        <th>Correo</th>
+        <th>Tiempo promedio</th>
+        <th>Promedio de intentos</th>
+        <tr *ngFor="let e of est_adivinarelnumero">
+            <td><div class="divEmail">{{e.email}}</div></td>
+            <td>{{e.tiempo}}</td>
+            <td>{{e.intentos}}</td>
+        </tr>
+    </table>
+</mat-card>
+<div class="divSpinner" *ngIf="spinner">
+    <div class="spin">
+      <img src="../../../assets/gif/preloader.gif">
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { JuegosService } from "../../services/juegos.service";
 
 @Component({
   selector: 'app-piedra-papel-tijera',
@@ -15,12 +16,15 @@ export class PiedraPapelTijeraComponent implements OnInit{
   estado: string;
   mostrarOpciones : boolean = true;
   mostrarEspera : boolean = false;
-
+  
   tacticas = [
     'PIEDRA',
     'PAPEL',
     'TIJERAS'
   ];
+  constructor(private juegosService : JuegosService){
+
+  }
 
   ngOnInit(){
   }
@@ -50,6 +54,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = 'le gana a';
     this.estado = '. Ganaste! Grrr';
+    this.juegosService.guardarPartidaPiedraPapelOTijera(this.seleccionUsuario, "ganado");
   }
 
 
@@ -59,6 +64,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = 'perdio ante';
     this.estado = '. A casa malo!';
+    this.juegosService.guardarPartidaPiedraPapelOTijera(this.seleccionUsuario, "perdido");
   }
 
   darTurno(usuario, PC) {
@@ -66,6 +72,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
     this.seleccionPC = PC;
     this.accion = ' y ';
     this.estado = ', eres perro también? Te toca';
+    this.juegosService.guardarPartidaPiedraPapelOTijera(this.seleccionUsuario, "empate");
   }
 
   verResultado() {
@@ -86,6 +93,7 @@ export class PiedraPapelTijeraComponent implements OnInit{
         this.darTurno(seleccionUsuario, seleccionPC);
         break;
     }
+
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TileStyler } from '@angular/material/grid-list/tile-styler';
 import { count } from 'rxjs/operators';
+import { JuegosService } from "../../services/juegos.service";
 
 @Component({
   selector: 'app-memotest',
@@ -15,6 +16,8 @@ export class MemotestComponent implements OnInit {
   textoResultado = "no se seteo";
   ocultarEspera : boolean = true;
   bloqueoJugar : boolean = false;
+  fecha = Date.now();
+  intentos : number = 0;
 
   cartas = [
     {nombre: "felipe", foto:"../../../assets/img/memotest/felipe.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
@@ -25,7 +28,7 @@ export class MemotestComponent implements OnInit {
     {nombre: "coca", foto:"../../../assets/img/memotest/coca.jpg", colorJugador : "", bloqueoPropio:false, par : false},
   ]
   
-  constructor() { }
+  constructor(private juegosService : JuegosService) { }
 
   ngOnInit(): void {
     this.jugarOtraVez();
@@ -37,15 +40,15 @@ export class MemotestComponent implements OnInit {
       c.colorJugador = "";
       c.par = false;
     });
-
     this.shuffle();
     this.mostrarCartas();
     this.cartasDadasVuelta = new Array();
     this.paresUsuario = 0;
     this.paresPC = 0;
+    this.intentos = 0;
     this.ocultarResultado = true;
     this.ocultarEspera = true;
-
+    this.fecha = Date.now();
   }
 
   turnoUsuario(indexCarta){
@@ -59,6 +62,7 @@ export class MemotestComponent implements OnInit {
         this.cartas[indexCarta].colorJugador = "accent";
         this.cartas[indexCarta].bloqueoPropio = true;
         this.cartasDadasVuelta.splice(indexCarta, 1, this.cartas[indexCarta]);
+        this.intentos++;
         this.bloquearCartas();
         setTimeout(() => {
           if (this.verificarPar()){ 
@@ -130,16 +134,21 @@ export class MemotestComponent implements OnInit {
   verResultado(){
     this.ocultarResultado = false;
     this.ocultarEspera = true;
-    console.log(this.paresUsuario);
-    console.log(this.paresPC);
+    let tiempo = Date.now();
+    let tiempoTardado = tiempo - this.fecha;
+    
     if(this.paresUsuario > this.paresPC){
       this.textoResultado = "Ganaste!!"
+      this.juegosService.guardarPartidaMemotest(tiempoTardado, "ganado", this.intentos);
     }
     else if(this.paresUsuario < this.paresPC){
       this.textoResultado = "Perdiste chiquitin"
+      this.juegosService.guardarPartidaMemotest(tiempoTardado, "perdido", this.intentos);
+
     }
     else if (this.paresUsuario == this.paresPC){
-      this.textoResultado = "Empate!!"
+      this.juegosService.guardarPartidaMemotest(tiempoTardado, "empatado", this.intentos);
+
     }
   }
 

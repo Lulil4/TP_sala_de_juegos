@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JuegosService } from "../../services/juegos.service";
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -14,8 +15,9 @@ export class AdivinaElNumeroComponent{
   ganador : boolean = false;
   casi : boolean = false;
   mostrarChequear : boolean = true;
+  fecha = Date.now();
 
-  constructor() { 
+  constructor(private juegosService : JuegosService) { 
     this.iniciar(); 
   } 
 
@@ -27,6 +29,7 @@ export class AdivinaElNumeroComponent{
     this.casi = false;
     this.ganador = false;
     this.mostrarChequear = true;
+    this.fecha = Date.now();
   } 
 
   verificarIntento() { 
@@ -45,6 +48,9 @@ export class AdivinaElNumeroComponent{
       this.casi = false;
       this.ganador = true;
       this.mostrarChequear = false;
+      let tiempo = Date.now();
+      let tiempoTardado = tiempo - this.fecha;
+      this.juegosService.guardarPartidaAdivinarNumero(tiempoTardado, this.contIntentos);
     }
   } 
 }

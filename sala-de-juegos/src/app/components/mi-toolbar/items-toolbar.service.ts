@@ -38,11 +38,6 @@ export class ItemsToolbarService {
   }
 
   cambiarToolbarLogueado(){
-    let itemPerfil ={
-      texto: "Estadisticas",
-      icono: "people",
-      ruta : "estadisticas"
-    }
     let itemCerrarSesion = {
       texto: "Cerrar Sesion",
       icono: "outlet",
@@ -50,7 +45,6 @@ export class ItemsToolbarService {
     };
     this.menuItems.pop();
     this.menuItems.pop();
-    this.menuItems.push(itemPerfil);
     this.menuItems.push(itemCerrarSesion);
   }
 
@@ -66,7 +60,6 @@ export class ItemsToolbarService {
       ruta: "registro"
     }
 
-    this.menuItems.pop();
     this.menuItems.pop();
     this.menuItems.push(itemIniciarSesion);
     this.menuItems.push(itemRegistro);

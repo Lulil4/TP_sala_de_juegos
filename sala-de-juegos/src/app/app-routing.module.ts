@@ -17,6 +17,8 @@ import { TokenGuard } from "../app/guards/token.guard";
 import { LogoutComponent } from './components/logout/logout.component';
 import { UsuarioIniciadoGuard } from "../app/guards/usuario-iniciado.guard";
 import { RegistroComponent } from "./components/registro/registro.component";
+import { EstadisticasComponent } from "./components/estadisticas/estadisticas.component";
+
 const routes: Routes = [
   {
     path:"juegos",
@@ -68,6 +70,11 @@ const routes: Routes = [
   {
     path:"registro",
     component: RegistroComponent,
+  },
+  {
+    path:"estadisticas",
+    component: EstadisticasComponent,
+    canActivate:[TokenGuard],
   },
   {
     path:"**",

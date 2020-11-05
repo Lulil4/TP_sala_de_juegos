@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JuegosService } from "../../services/juegos.service";
 
 @Component({
   selector: 'app-ta-te-ti',
@@ -14,8 +15,9 @@ export class TaTeTiComponent implements OnInit {
   cont : number = 0; 
   primerTurno : boolean = true;
   bloqueoNuevoJuego : boolean = true;
+  tiempo = Date.now();
 
-  constructor() {}
+  constructor(private juegosService : JuegosService) {}
 
   ngOnInit() {
     this.nuevoJuego();
@@ -29,6 +31,7 @@ export class TaTeTiComponent implements OnInit {
     this.cont = 0;
     this.primerTurno = true;
     this.bloqueoNuevoJuego = true;
+    this.tiempo = Date.now();
   }
 
   get jugador() {
@@ -50,29 +53,54 @@ export class TaTeTiComponent implements OnInit {
   }
 
   turnoUsuario(iCuadro: number) {
-    if (this.turnoUno){
+    if (this.turnoUno) {
       if (!this.cuadros[iCuadro]) {
         this.bloqueoNuevoJuego = true;
         this.bloqueoTurnos = true;
         this.cuadros.splice(iCuadro, 1, this.jugador);
         this.turnoUno = !this.turnoUno;
         this.ganador = this.verResultado();
-        if (this.ganador != null){
+        if (this.ganador != null) {
+          let fecha = Date.now();
+          let tiempoTardado = fecha - this.tiempo;
+          if (this.ganador == "1") {
+            this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "ganado");
+          }
+          else if (this.ganador == "2") {
+            this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "perdido");
+          }
+          else {
+            this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "empate");
+          }
+
           this.bloqueoTurnos = true;
           this.bloqueoNuevoJuego = false;
         }
-        if (this.cont < 9 && this.ganador == null){
+        if (this.cont < 9 && this.ganador == null) {
           setTimeout(() => {
             this.turnoPC();
             this.turnoUno = !this.turnoUno;
             this.bloqueoTurnos = false;
             this.bloqueoNuevoJuego = false;
             this.ganador = this.verResultado();
-            if (this.ganador != null){
+            if (this.ganador != null) {
+
+              let fecha = Date.now();
+              let tiempoTardado = fecha - this.tiempo;
+              if (this.ganador == "1") {
+                this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "ganado");
+              }
+              else if (this.ganador == "2") {
+                this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "perdido");
+              }
+              else {
+                this.juegosService.guardarPartidaTaTeTi(tiempoTardado, "empate");
+              }
+
               this.bloqueoTurnos = true;
               this.bloqueoNuevoJuego = false;
             }
-          },2000); 
+          }, 2000);
         }
       }
     }
