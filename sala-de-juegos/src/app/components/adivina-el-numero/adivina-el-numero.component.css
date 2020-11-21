@@ -61,3 +61,20 @@ p{
     margin-top: 5vw;
     margin-bottom:2vw;
 }
+
+.cardReloj{
+    background-color:grey;
+    width:40vw;
+    min-height: 3vh;
+    font-size:xx-large;
+}
+
+.flex{
+    display:flex;
+    justify-content:center
+}
+
+button{
+    font-size:x-large;
+    margin:1vh;
+}

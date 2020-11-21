@@ -1,1 +1,28 @@
-<p>agilidad-aritmetica works!</p>
+<div class="container">
+    <mat-card>
+        <mat-card-title>Agilidad aritmética</mat-card-title>
+        <strong class="palabraDesordenada">{{cuenta}}</strong>
+        <br>
+
+        <input type="number" *ngIf="!gano" [(ngModel)]="intento" (keyup.enter)="verificarIntento()">
+        <br>
+
+        <div align="center">
+            <div class="divGano" *ngIf="gano">
+                <strong>Muy bien!!</strong>
+            </div>
+            <div class="divError" *ngIf="error">
+                <strong>Mejor suerte la próxima :(</strong>
+            </div>
+        </div>
+
+        <button mat-raised-button color="accent" (click)="verificarIntento()" *ngIf="!gano">Chequear</button>
+        <br>
+        <button mat-raised-button color="accent" (click)="comenzarJuego()">Jugar otra vez</button>
+    </mat-card>
+</div>
+<div class="container">
+    <mat-card class="cardReloj">
+        <strong>{{display}}</strong>
+    </mat-card>
+</div>

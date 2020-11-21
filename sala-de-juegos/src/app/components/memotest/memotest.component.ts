@@ -19,6 +19,10 @@ export class MemotestComponent implements OnInit {
   fecha = Date.now();
   intentos : number = 0;
 
+  time: number = 0;
+  display;
+  interval;
+
   cartas = [
     {nombre: "felipe", foto:"../../../assets/img/memotest/felipe.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
     {nombre: "coca", foto:"../../../assets/img/memotest/coca.jpg", colorJugador : "", bloqueoPropio:false, par : false},
@@ -49,6 +53,7 @@ export class MemotestComponent implements OnInit {
     this.ocultarResultado = true;
     this.ocultarEspera = true;
     this.fecha = Date.now();
+    this.reiniciarTimer();
   }
 
   turnoUsuario(indexCarta){
@@ -139,6 +144,7 @@ export class MemotestComponent implements OnInit {
     
     if(this.paresUsuario > this.paresPC){
       this.textoResultado = "Ganaste!!"
+      this.pauseTimer();
       this.juegosService.guardarPartidaMemotest(tiempoTardado, "ganado", this.intentos);
     }
     else if(this.paresUsuario < this.paresPC){
@@ -250,5 +256,32 @@ export class MemotestComponent implements OnInit {
         c.bloqueoPropio = false; 
       }
     });
+  }
+  
+  reiniciarTimer(){
+    this.pauseTimer();
+    this.time = 0;
+    this.startTimer();
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if(this.time === 0){
+        this.time++;
+      }else
+      {
+        this.time++;
+      }
+      this.display = this.transform(this.time)
+    }, 1000);
+  }
+  
+  transform(value: number): string {
+       const minutes: number = Math.floor(value / 60);
+       return minutes + ':' + (value - minutes * 60);
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }

@@ -1,0 +1,65 @@
+mat-card{
+    text-align:center;
+    background-color: palevioletred;
+    width:80vw;
+}
+
+
+mat-card-title{
+    margin-bottom:7vh;
+    color:black;
+    font-size:x-large;
+}
+
+strong{
+    text-align: center;
+    color: white;
+    font-size: xx-large;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+input{
+    margin-top:3vh;
+    margin-bottom:3vh;
+    font-size:xx-large;
+    font-weight:bolder;
+    width:70vw;
+    text-align:center;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+}
+
+button{
+    margin-top:1vh;
+    font-size:xx-large;
+    padding:1.8vh;
+}
+
+.divGano{
+    display: table-cell;
+    vertical-align: middle;
+    height:10vh;
+    border-radius:3vh;
+    background-color:green;
+    margin-bottom:2vh;
+}
+
+.divError{
+    display: table-cell;
+    vertical-align: middle;
+    height:10vh;
+    border-radius:3vh;
+    background-color:red;
+    margin-bottom:2vh;
+}
+
+.cardReloj{
+    background-color:grey;
+    width:40vw;
+    min-height: 3vh;
+}

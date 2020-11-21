@@ -1,33 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
+import { FormBuilder, Validators } from "@angular/forms";
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  email: string = "";
-  clave: string = "";
-  usuario: string = "";
+
+  registroForm = this.fb.group({
+    correo:["", [Validators.required, Validators.email]],
+    usuario:["", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
+    clave:["", [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
+  })
+
   hide: boolean = true;
   agregado : boolean = true;
   mensaje : string = "";
   spinner : boolean = false;
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService, private fb : FormBuilder) { }
 
   ngOnInit() {
   }
 
   darDeAlta(){
+   let correo = this.registroForm.controls["correo"].value;
+   let usuario = this.registroForm.controls["usuario"].value;
+   let clave = this.registroForm.controls["clave"].value;
+    
     this.agregado = true;
     this.hide = true;
     this.mensaje = "";
-
-    if(this.email == "" || this.clave == "" || this.usuario == ""){
-      this.mensaje = "Por favor, ingrese todos los campos!";
-    }
 
     if(this.mensaje != ""){
       this.hide = false;
@@ -36,7 +42,7 @@ export class RegistroComponent implements OnInit {
       this.hide = true;
       this.spinner = true;
       setTimeout(() => {
-        this.authService.register(this.email, this.clave, this.usuario)
+        this.authService.register(correo, clave, usuario)
         .then(() =>{ 
         this.agregado = false;
         this.limpiar()
@@ -53,20 +59,18 @@ export class RegistroComponent implements OnInit {
         }
         else{
           this.mensaje = error;
-          console.log(error.code);
         }
         });
         this.hide = false;
         this.spinner = false;
         }, 2000); 
+        
     }
   }
   
 
   limpiar(){
-    this.email=""; 
-    this.clave= "";
-    this.usuario= "";
+    this.registroForm.reset();
     this.mensaje= "";
     this.hide= true;
   }

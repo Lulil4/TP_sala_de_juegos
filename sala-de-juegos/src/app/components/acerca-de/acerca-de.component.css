@@ -7,14 +7,19 @@
     color: rgb(0, 90, 90);
 }
 
-
 img{
-    border-radius: 1%;
-    height:100%;
+    border-radius:1vh;
 }
+
 
 mat-card img{
     object-fit: cover; 
     width: 80%;
-    height: auto;
-  }
+    height:40vh;
+    margin:1vh;
+}
+
+.flex{
+    display:flex;
+    justify-content:center;
+}

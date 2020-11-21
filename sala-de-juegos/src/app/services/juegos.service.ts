@@ -11,40 +11,114 @@ export class JuegosService {
   constructor(private db : AngularFirestore, private auth : AuthService) { }
 
   guardarPartidaPiedraPapelOTijera(arma, resultado){
-    this.db.collection("piedrapapelotijera").doc(this.auth.getUser() + Date.now()).set({
-      arma: arma,
-      resultado: resultado,
-      email : this.auth.getUser(),
-      fecha: Date.now()
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("piedrapapelotijera").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          arma: arma,
+          resultado: resultado,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
     });
   }
 
+  traerUsuario(email){
+    return this.db.collection("Usuarios", ref => ref.where("correo", "==", email)).valueChanges();
+  }
+
   guardarPartidaTaTeTi(tiempo, resultado){
-    this.db.collection("tateti").doc(this.auth.getUser() + Date.now()).set({
-      tiempo : tiempo,
-      resultado : resultado,
-      email : this.auth.getUser(),
-      fecha: Date.now()
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("tateti").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          resultado : resultado,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
     });
   }
 
   guardarPartidaMemotest(tiempo, resultado, intentos){
-    this.db.collection("memotest").doc(this.auth.getUser() + Date.now()).set({
-      tiempo : tiempo,
-      intentos : intentos,
-      resultado : resultado,
-      email : this.auth.getUser(),
-      fecha: Date.now()
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("memotest").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          intentos : intentos,
+          resultado : resultado,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
     });
   }
 
   guardarPartidaAdivinarNumero(tiempo, intentos){
-    this.db.collection("adivinarelnumero").doc(this.auth.getUser() + Date.now()).set({
-      tiempo : tiempo,
-      intentos : intentos,
-      email : this.auth.getUser(),
-      fecha: Date.now()
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("adivinarelnumero").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          intentos : intentos,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
     });
+  }
+
+  guardarPartidaAnagrama(tiempo, intentos){
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("anagrama").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          intentos : intentos,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
+    });
+  }
+
+  guardarPartidaAgilidadAritmetica(tiempo, intentos){
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("agilidad-aritmetica").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          intentos : intentos,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
+    });
+  }
+
+  traerPartidasAnagramaEmail(email){
+    return this.db.collection("anagrama", ref => ref.where("email", "==", email)).valueChanges();
+  }
+
+  traerPartidasAgilidadAritmeticaEmail(email){
+    return this.db.collection("agilidad-aritmetica", ref => ref.where("email", "==", email)).valueChanges();
+  }
+  
+  traerPartidasAnagrama(){
+    return this.db.collection("anagrama").valueChanges();
+  }
+
+  traerPartidasAgilidadAritmetica(){
+    return this.db.collection("agilidad-aritmetica").valueChanges();
   }
 
   traerPartidasPiedraPapelOTijerasEmail(email){
@@ -68,7 +142,7 @@ export class JuegosService {
   }
 
   traerUsuarios(){
-    return this.db.collection("Usuarios");
+    return this.db.collection("Usuarios").valueChanges();
   }
 
   traerPartidasTateti(){

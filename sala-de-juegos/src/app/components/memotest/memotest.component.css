@@ -44,3 +44,17 @@ span{
 button{
     margin-left:2vw;
 }
+
+.cardReloj{
+    background-color:grey;
+    width:40vw;
+    min-height: 3vh;
+    font-size:xx-large;
+}
+
+
+.flexReloj{
+    display:flex;
+    justify-content: center;
+    text-align:center;
+}

@@ -20,6 +20,27 @@ img{
     cursor: pointer;
 }
 
+.containerSnake{
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.divSnake{
+    text-align:center;
+    width:29vw;
+    height:29vw;
+    background-color:black;
+    border-radius:2vh;
+}
+
+.imgSnake{
+    margin:2vw;
+    width:25vw;
+    height:25vw;
+    border-radius:2vh;
+}
+
 @media (orientation: portrait){
     mat-grid-list{
         margin-top: 0px !important;

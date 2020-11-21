@@ -8,12 +8,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   email:string = "";
   pwd:string = "";
   err:string;
   hide:boolean;
   spinner:boolean;
+
   constructor(private authService : AuthService, public router : Router) { 
   }
 

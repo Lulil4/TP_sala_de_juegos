@@ -1,1 +1,26 @@
-<p>anagrama works!</p>
+<div class="container">
+    <mat-card>
+        <mat-card-title>Anagrama</mat-card-title>
+        <strong class="palabraDesordenada">{{palabraDesordenada}}</strong>
+        <br>
+        <input class="text" *ngIf="!gano" [(ngModel)]="intentoPalabra" maxlength="20" (keyup.enter)="verificarIntento()">
+        <br>
+        <div align="center">
+            <div class="divGano" *ngIf="gano">
+                <strong>Muy bien!!</strong>
+            </div>
+            <br>
+            <div class="divGano" *ngIf="gano">
+                <img [src]="fotoPerro">
+            </div>
+            <div class="divError" *ngIf="error">
+                <strong>Mejor suerte la próxima :(</strong>
+            </div>
+        </div>
+
+        <button mat-raised-button color="accent" (click)="verificarIntento()" *ngIf="!gano">Chequear</button>
+        <br>
+        <button mat-raised-button color="accent" (click)="comenzarJuego()">Jugar otra vez</button>
+
+    </mat-card>
+</div>

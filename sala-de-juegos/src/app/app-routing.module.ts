@@ -18,6 +18,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { UsuarioIniciadoGuard } from "../app/guards/usuario-iniciado.guard";
 import { RegistroComponent } from "./components/registro/registro.component";
 import { EstadisticasComponent } from "./components/estadisticas/estadisticas.component";
+import { SnakeComponent } from "./components/snake/snake.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: "memotest",
         component: MemotestComponent,
+      },
+      {
+        path: "snake",
+        component: SnakeComponent,
       }    
     ]
   },

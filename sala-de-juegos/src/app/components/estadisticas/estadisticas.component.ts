@@ -8,7 +8,7 @@ import { JuegosService } from "../../services/juegos.service";
 })
 export class EstadisticasComponent implements OnInit {
 
-  partidasPiedrapapelotijeras = new Array(); 
+  partidasPiedrapapelotijeras = new Array();
   est_piedrapapelotijeras = new Array();
   partidasTateti = new Array();
   est_tateti = new Array();
@@ -16,10 +16,15 @@ export class EstadisticasComponent implements OnInit {
   est_memotest = new Array();
   partidasAdivinarElNumero = new Array();
   est_adivinarelnumero = new Array();
-  listaEmails = new Array();
-  spinner:boolean;
+  partidasAnagrama = new Array();
+  est_anagrama = new Array();
+  partidasAgilidadAritmetica = new Array();
+  est_agilidadAritmetica = new Array();
 
-  constructor(private juegosService : JuegosService) { }
+  listaEmails = new Array();
+  spinner: boolean;
+
+  constructor(private juegosService: JuegosService) { }
 
   ngOnInit(): void {
     this.traerUsuarios();
@@ -27,35 +32,41 @@ export class EstadisticasComponent implements OnInit {
     this.traerPartidasTateti();
     this.traerPartidasMemotest();
     this.traerPartidasAdivinarElNumero();
+    this.traerPartidasAnagrama();
+    this.traerPartidasAgilidadAritmetica();
+
     this.spinner = true;
     setTimeout(() => {
-    this.traerEstPiedraPapelOTijeras();
-    this.traerEstTateti();
-    this.traerEstMemotest();
-    this.traerEstAdivinarElNumero();
-    this.spinner = false;
+      this.traerEstPiedraPapelOTijeras();
+      this.traerEstTaTeTi();
+      this.traerEstMemotest();
+      this.traerEstAdivinarElNumero();
+      this.traerEstAnagrama();
+      this.traerEstAgilidadAritmetca();
+      this.spinner = false;
     }, 2000);
   }
 
-  traerEstAdivinarElNumero(){
+  traerEstAdivinarElNumero() {
 
     this.listaEmails.forEach(e => {
       let est: any = new Object();
       est.email = e;
-      
-      let contIntentos = 0; 
+
+      let contIntentos = 0;
       let tiempo = 0;
       let cantPartidas = 0;
 
       this.partidasAdivinarElNumero.forEach(p => {
         if (e == p.email) {
+          est.user = p.user;
           contIntentos += p.intentos;
           tiempo += p.tiempo;
           cantPartidas++;
         }
       });
 
-      if (contIntentos != 0){
+      if (contIntentos != 0) {
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
         est.intentos = contIntentos / cantPartidas;
@@ -64,27 +75,28 @@ export class EstadisticasComponent implements OnInit {
     });
   }
 
-  traerPartidasAdivinarElNumero(){
-      this.juegosService.traerPartidasAdivinarElNumero().subscribe(res => {
-        res.forEach((p: any) => {
-          this.partidasAdivinarElNumero.push(p);
-        });
+  traerPartidasAdivinarElNumero() {
+    this.juegosService.traerPartidasAdivinarElNumero().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasAdivinarElNumero.push(p);
       });
+    });
   }
 
-  traerEstMemotest(){
+  traerEstMemotest() {
     this.listaEmails.forEach(e => {
       let est: any = new Object();
       est.resultado = null;
       est.email = e;
-      
-      let contIntentos = 0; 
+
+      let contIntentos = 0;
       let contResultado = [0, 0];
       let tiempo = 0;
 
       this.partidasMemotest.forEach(p => {
         if (e == p.email) {
           contIntentos += p.intentos;
+          est.user = p.user;
 
           if (p.resultado == "ganado") {
             contResultado[0]++;
@@ -97,9 +109,9 @@ export class EstadisticasComponent implements OnInit {
         }
       });
 
-      if (contResultado[0] != 0 || contResultado[1] != 0){
+      if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
-        est.resultado = contResultado[0] * 100/ cantPartidas;
+        est.resultado = contResultado[0] * 100 / cantPartidas;
 
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
@@ -114,15 +126,15 @@ export class EstadisticasComponent implements OnInit {
     });
   }
 
-  traerPartidasMemotest(){
-      this.juegosService.traerPartidasMemotest().subscribe(res => {
-        res.forEach((p: any) => {
-          this.partidasMemotest.push(p);
-        });
+  traerPartidasMemotest() {
+    this.juegosService.traerPartidasMemotest().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasMemotest.push(p);
       });
+    });
   }
 
-  traerEstPiedraPapelOTijeras() {
+  traerEstTaTeTi() {
     this.listaEmails.forEach(e => {
       let est: any = new Object();
       est.resultado = null;
@@ -133,6 +145,8 @@ export class EstadisticasComponent implements OnInit {
 
       this.partidasTateti.forEach(p => {
         if (e == p.email) {
+
+          est.user = p.user;
           if (p.resultado == "ganado") {
             contResultado[0]++;
           }
@@ -144,9 +158,9 @@ export class EstadisticasComponent implements OnInit {
         }
       });
 
-      if (contResultado[0] != 0 || contResultado[1] != 0){
+      if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
-        est.resultado = contResultado[0] * 100/ cantPartidas;
+        est.resultado = contResultado[0] * 100 / cantPartidas;
 
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
@@ -160,21 +174,21 @@ export class EstadisticasComponent implements OnInit {
   }
 
   millisToMinutesAndSeconds(ms) {
-    ms = 1000*Math.round(ms/1000); // round to nearest second
+    ms = 1000 * Math.round(ms / 1000); // round to nearest second
     var d = new Date(ms);
     return (d.getUTCMinutes().toString() + ':' + d.getUTCSeconds().toString());
   }
 
-  
+
   traerPartidasPiedraPapelOTijeras() {
-      this.juegosService.traerPartidasPiedraPapelOTijeras().subscribe(res => {
-        res.forEach((p: any) => {
-          this.partidasPiedrapapelotijeras.push(p);
-        });
+    this.juegosService.traerPartidasPiedraPapelOTijeras().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasPiedrapapelotijeras.push(p);
       });
+    });
   }
 
-  traerEstTateti() {
+  traerEstPiedraPapelOTijeras() {
     this.listaEmails.forEach(e => {
       let est: any = new Object();
       est.arma = "TIJERAS";
@@ -187,6 +201,7 @@ export class EstadisticasComponent implements OnInit {
 
       this.partidasPiedrapapelotijeras.forEach(p => {
         if (e == p.email) {
+          est.user = p.user;
           if (p.arma == "PIEDRA") {
             contArma[0]++;
           }
@@ -214,9 +229,9 @@ export class EstadisticasComponent implements OnInit {
         }
       });
 
-      if (contResultado[0] != 0 || contResultado[1] != 0){
+      if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
-        est.resultado = contResultado[0] * 100/ cantPartidas;
+        est.resultado = contResultado[0] * 100 / cantPartidas;
       }
 
       if (est.resultado != null) {
@@ -226,7 +241,7 @@ export class EstadisticasComponent implements OnInit {
     });
   }
 
-  traerPartidasTateti(){
+  traerPartidasTateti() {
     this.juegosService.traerPartidasTateti().subscribe(res => {
       res.forEach((p: any) => {
         this.partidasTateti.push(p);
@@ -234,11 +249,81 @@ export class EstadisticasComponent implements OnInit {
     });
   }
 
-  async traerUsuarios(){
+  traerPartidasAnagrama() {
+    this.juegosService.traerPartidasAnagrama().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasAnagrama.push(p);
+      });
+    });
+  }
+
+  traerPartidasAgilidadAritmetica() {
+    this.juegosService.traerPartidasAgilidadAritmetica().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasAgilidadAritmetica.push(p);
+      });
+    });
+  }
+
+  traerEstAnagrama() {
+    this.listaEmails.forEach(e => {
+      let est: any = new Object();
+      est.email = e;
+
+      let contIntentos = 0;
+      let tiempo = 0;
+      let cantPartidas = 0;
+
+      this.partidasAnagrama.forEach(p => {
+        if (e == p.email) {
+          contIntentos += p.intentos;
+          tiempo += p.tiempo;
+          cantPartidas++;
+          est.user = p.user;
+        }
+      });
+
+      if (contIntentos != 0) {
+        est.tiempo = tiempo / cantPartidas;
+        est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
+        est.intentos = contIntentos / cantPartidas;
+        this.est_anagrama.push(est);
+      }
+    });
+  }
+
+  traerEstAgilidadAritmetca() {
+    this.listaEmails.forEach(e => {
+      let est: any = new Object();
+      est.email = e;
+
+      let contIntentos = 0;
+      let tiempo = 0;
+      let cantPartidas = 0;
+
+      this.partidasAgilidadAritmetica.forEach(p => {
+        if (e == p.email) {
+          contIntentos += p.intentos;
+          tiempo += p.tiempo;
+          cantPartidas++;
+          est.user = p.user;
+        }
+      });
+
+      if (contIntentos != 0) {
+        est.tiempo = tiempo / cantPartidas;
+        est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
+        est.intentos = contIntentos / cantPartidas;
+        this.est_agilidadAritmetica.push(est);
+      }
+    });
+  }
+
+  async traerUsuarios() {
     let usersRef = this.juegosService.traerUsuarios();
 
-    await usersRef.valueChanges().subscribe(res=>{
-      res.forEach((u:any) => {
+    await usersRef.subscribe(res => {
+      res.forEach((u: any) => {
         this.listaEmails.push(u.correo);
       });
     });

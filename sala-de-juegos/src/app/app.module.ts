@@ -36,6 +36,9 @@ import { CuadroComponent } from './components/ta-te-ti/cuadro/cuadro.component';
 import { CartaComponent } from './components/memotest/carta/carta.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { SnakeComponent } from './components/snake/snake.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     RegistroComponent,
     CuadroComponent,
     CartaComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    SnakeComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,10 @@ export class AdivinaElNumeroComponent{
   mostrarChequear : boolean = true;
   fecha = Date.now();
 
+  time: number = 0;
+  display;
+  interval;
+
   constructor(private juegosService : JuegosService) { 
     this.iniciar(); 
   } 
@@ -30,6 +34,7 @@ export class AdivinaElNumeroComponent{
     this.ganador = false;
     this.mostrarChequear = true;
     this.fecha = Date.now();
+    this.reiniciarTimer();
   } 
 
   verificarIntento() { 
@@ -45,6 +50,7 @@ export class AdivinaElNumeroComponent{
       this.casi = true; 
     }
     else{
+      this.pauseTimer();
       this.casi = false;
       this.ganador = true;
       this.mostrarChequear = false;
@@ -52,5 +58,32 @@ export class AdivinaElNumeroComponent{
       let tiempoTardado = tiempo - this.fecha;
       this.juegosService.guardarPartidaAdivinarNumero(tiempoTardado, this.contIntentos);
     }
-  } 
+  }
+
+  reiniciarTimer(){
+    this.pauseTimer();
+    this.time = 0;
+    this.startTimer();
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if(this.time === 0){
+        this.time++;
+      }else
+      {
+        this.time++;
+      }
+      this.display = this.transform(this.time)
+    }, 1000);
+  }
+  
+  transform(value: number): string {
+       const minutes: number = Math.floor(value / 60);
+       return minutes + ':' + (value - minutes * 60);
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
 }
