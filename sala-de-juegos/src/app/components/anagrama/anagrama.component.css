@@ -45,7 +45,7 @@ button{
     vertical-align: middle;
     height:10vh;
     border-radius:3vh;
-    background-color:green;
+    background-color:rgb(125, 255, 125);
     margin-bottom:2vh;
 }
 
@@ -54,12 +54,22 @@ button{
     vertical-align: middle;
     height:10vh;
     border-radius:3vh;
-    background-color:red;
+    background-color:rgb(255, 95, 95);
     margin-bottom:2vh;
 }
 
 img{
-    height:20vh;
-    width:20vh;
+    margin:1vh;
+    height:30vh;
     border-radius:4vh;
 }
+
+.divFoto{
+    display: table-cell;
+    vertical-align: middle;
+    border-radius:3vh;
+    margin-bottom:2vh;
+    border: double 3vh;
+    border-image: url("../../../assets/img/border.png") 27 round stretch;
+}
+
