@@ -45,6 +45,11 @@ export class EstadisticasComponent implements OnInit {
       this.traerEstAgilidadAritmetca();
       this.spinner = false;
     }, 2000);
+
+    this.spinner = true;
+    setTimeout(() => {
+      this.spinner = false;
+    }, 3000);
   }
 
   traerEstAdivinarElNumero() {
@@ -70,6 +75,7 @@ export class EstadisticasComponent implements OnInit {
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
         est.intentos = contIntentos / cantPartidas;
+        est.intentos = est.intentos.toFixed(2)
         this.est_adivinarelnumero.push(est);
       }
     });
@@ -112,11 +118,13 @@ export class EstadisticasComponent implements OnInit {
       if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
         est.resultado = contResultado[0] * 100 / cantPartidas;
+        est.resultado = est.resultado.toFixed(2)
 
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
 
         est.intentos = contIntentos / cantPartidas;
+        est.intentos = est.intentos.toFixed(2)
       }
 
       if (est.resultado != null) {
@@ -161,6 +169,7 @@ export class EstadisticasComponent implements OnInit {
       if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
         est.resultado = contResultado[0] * 100 / cantPartidas;
+        est.resultado = est.resultado.toFixed(2)
 
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
@@ -232,6 +241,7 @@ export class EstadisticasComponent implements OnInit {
       if (contResultado[0] != 0 || contResultado[1] != 0) {
         let cantPartidas = contResultado[0] + contResultado[1];
         est.resultado = contResultado[0] * 100 / cantPartidas;
+        est.resultado = est.resultado.toFixed(2)
       }
 
       if (est.resultado != null) {
@@ -287,6 +297,7 @@ export class EstadisticasComponent implements OnInit {
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
         est.intentos = contIntentos / cantPartidas;
+        est.intentos = est.intentos.toFixed(2)
         this.est_anagrama.push(est);
       }
     });
@@ -314,6 +325,7 @@ export class EstadisticasComponent implements OnInit {
         est.tiempo = tiempo / cantPartidas;
         est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
         est.intentos = contIntentos / cantPartidas;
+        est.intentos = est.intentos.toFixed(2)
         this.est_agilidadAritmetica.push(est);
       }
     });

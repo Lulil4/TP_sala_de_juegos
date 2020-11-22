@@ -40,7 +40,6 @@ export class AnagramaComponent implements OnInit {
     let rand = Math.random() * (9 - 0) + 0;
     let iPalabra = Math.floor(rand);
     this.tiempoStart = Date.now();
-
     this.palabraOrdenada = this.palabras[iPalabra];
     this.palabraDesordenada = "";
     this.desordenarPalabra();
