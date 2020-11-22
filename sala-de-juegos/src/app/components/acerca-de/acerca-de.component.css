@@ -11,12 +11,21 @@ img{
     border-radius:1vh;
 }
 
+mat-card{
+    width:50vw;
+}
 
-mat-card img{
+.imgAncha{
     object-fit: cover; 
-    width: 80%;
-    height:40vh;
+    width:30vw;
     margin:1vh;
+}
+
+.imgAlta{
+    object-fit: cover; 
+    width:20vw;
+    margin:1vh;
+
 }
 
 .flex{

@@ -22,7 +22,7 @@
             <p style="text-align:center;" text-wrap color="danger">{{err}}</p>
         </mat-label>
         
-        <button mat-raised-button color="accent" (click)="onSubmitLogin()"> Enviar</button>
+        <button mat-raised-button color="accent" (click)="onSubmitLogin()" [disabled]="spinner"> Enviar</button>
 
         <div class="divSpinner" *ngIf="spinner">
             <div class="spin">
@@ -31,7 +31,7 @@
         </div>
         
         <div style="margin-top:1vw;">
-            <button mat-fab color="accent" (click)="loginAdmin()">
+            <button mat-fab color="accent" (click)="loginAdmin()" [disabled]="spinner">
               <mat-icon>favorite</mat-icon>
         </button>
         </div>

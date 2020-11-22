@@ -6,7 +6,7 @@ mat-card{
 
 
 mat-card-title{
-    margin-bottom:7vh;
+    margin-bottom:2vh;
     color:black;
     font-size:x-large;
 }
@@ -73,3 +73,6 @@ img{
     border-image: url("../../../assets/img/border.png") 27 round stretch;
 }
 
+.pista{
+    font-size:x-large;
+}

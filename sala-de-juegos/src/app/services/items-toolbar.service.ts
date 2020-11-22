@@ -13,16 +13,6 @@ export class ItemsToolbarService {
       ruta: ""
     },
     {
-      texto: "Juegos",
-      icono: "sports_esports",
-      ruta: "juegos"
-    },
-    {
-      texto: "Acerca de...",
-      icono: "account_circle",
-      ruta: "acerca-de"
-    },
-    {
       texto: "Iniciar sesion",
       icono: "sentiment_satisfied_alt",
       ruta: "login"
@@ -38,36 +28,75 @@ export class ItemsToolbarService {
   }
 
   cambiarToolbarLogueado(){
-    let itemPerfil ={
+    let itemHome = {
+      texto: 'MISalita',
+      icono: "home",
+      ruta: ""
+    };
+
+    let itemJuegos = {
+      texto: "Juegos",
+      icono: "sports_esports",
+      ruta: "juegos"
+    };
+
+    let itemEst ={
       texto: "Estadisticas",
       icono: "people",
       ruta : "estadisticas"
     }
-    let itemCerrarSesion = {
+
+    let itemAcerca = {
+      texto: "Acerca de...",
+      icono: "account_circle",
+      ruta: "acerca-de"
+    };
+
+    let itemCerrar = {
       texto: "Cerrar Sesion",
       icono: "outlet",
       ruta: "logout"
     };
-    this.menuItems.pop();
-    this.menuItems.pop();
-    this.menuItems.push(itemPerfil);
-    this.menuItems.push(itemCerrarSesion);
+
+    let length = this.menuItems.length;
+
+    for(let i = 0; i < length; i++){
+      this.menuItems.pop();
+    }
+
+    this.menuItems.push(itemHome);
+    this.menuItems.push(itemJuegos);
+    this.menuItems.push(itemEst);
+    this.menuItems.push(itemAcerca);
+    this.menuItems.push(itemCerrar);
   }
 
   cambiarToolbarSinSesion(){
-    let itemIniciarSesion =     {
+    let itemHome = {
+      texto: 'MISalita',
+      icono: "home",
+      ruta: ""
+    };
+
+    let itemIniciarSesion = {
       texto: "Iniciar sesion",
       icono: "sentiment_satisfied_alt",
       ruta: "login"
     };
+    
     let itemRegistro = {
       texto: "Registrarse",
       icono: "person_add_alt_1",
       ruta: "registro"
     }
 
-    this.menuItems.pop();
-    this.menuItems.pop();
+    let length = this.menuItems.length;
+
+    for(let i = 0; i < length; i++){
+      this.menuItems.pop();
+    }
+
+    this.menuItems.push(itemHome);
     this.menuItems.push(itemIniciarSesion);
     this.menuItems.push(itemRegistro);
   }
