@@ -2,9 +2,11 @@
     <mat-card>
         <mat-card-title>Anagrama</mat-card-title>
         <mat-card-subtitle><strong class="pista">Psst, es una raza de perro</strong></mat-card-subtitle>
-        <strong class="palabraDesordenada">{{palabraDesordenada}}</strong>
+        <strong class="palabraDesordenada" *ngIf="!gano">{{palabraDesordenada}}</strong>
+        <strong class="palabraDesordenada" *ngIf="gano">{{palabraOrdenada}}</strong>
         <br>
-        <input class="text" *ngIf="!gano" [(ngModel)]="intentoPalabra" maxlength="20" (keyup.enter)="verificarIntento()">
+        <input class="text" *ngIf="!gano" [(ngModel)]="intentoPalabra" maxlength="20"
+            (keyup.enter)="verificarIntento()">
         <br>
         <div align="center">
             <div class="divGano" *ngIf="gano">

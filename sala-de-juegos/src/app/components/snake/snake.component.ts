@@ -1,4 +1,4 @@
-/*import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 export const BOARD_SIZE = 18;
 
@@ -30,7 +30,7 @@ export const GAME_MODES = {
   styleUrls: ['./snake.component.css']
 })
 export class SnakeComponent {
-  private interval: number;
+ /* private interval: number;
   private tempDirection: number;
   private default_mode = 'classic';
   private isGameOver = false;
@@ -294,5 +294,5 @@ export class SnakeComponent {
 
     this.resetFruit();
     this.updatePositions();
-  }
-}*/
+  }*/
+}
