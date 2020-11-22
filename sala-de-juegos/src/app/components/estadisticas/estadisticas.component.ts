@@ -20,6 +20,8 @@ export class EstadisticasComponent implements OnInit {
   est_anagrama = new Array();
   partidasAgilidadAritmetica = new Array();
   est_agilidadAritmetica = new Array();
+  partidasSnake = new Array();
+  est_snake = new Array();
 
   listaEmails = new Array();
   spinner: boolean;
@@ -34,9 +36,11 @@ export class EstadisticasComponent implements OnInit {
     this.traerPartidasAdivinarElNumero();
     this.traerPartidasAnagrama();
     this.traerPartidasAgilidadAritmetica();
+    this.traerPartidasSnake();
 
     this.spinner = true;
     setTimeout(() => {
+      this.traerEstSnake();
       this.traerEstPiedraPapelOTijeras();
       this.traerEstTaTeTi();
       this.traerEstMemotest();
@@ -50,6 +54,34 @@ export class EstadisticasComponent implements OnInit {
     setTimeout(() => {
       this.spinner = false;
     }, 3000);
+  }
+
+  traerPartidasSnake(){
+    this.juegosService.traerPartidasSnake().subscribe(res => {
+      res.forEach((p: any) => {
+        this.partidasSnake.push(p);
+      });
+    });
+  }
+
+  traerEstSnake(){
+    this.listaEmails.forEach(e => {
+      let est: any = new Object();
+      est.puntajeM = 0;
+
+      this.partidasSnake.forEach(p => {
+        if (e == p.email && p.puntaje > est.puntajeM) {
+          est.user = p.user;
+          est.tiempo = p.tiempo;
+          est.puntajeM = p.puntaje;
+        }
+      });
+
+      if(est.puntajeM != 0){
+        est.tiempo = this.millisToMinutesAndSeconds(est.tiempo);
+        this.est_snake.push(est);
+      }
+    });
   }
 
   traerEstAdivinarElNumero() {

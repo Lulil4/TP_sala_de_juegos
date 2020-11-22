@@ -1,18 +1,56 @@
-hola
-<!--<class="game-container">
-    <div class="game-header">
-      <h3 class="logo">ngx-Snake</h3>
-      <div class="score-block">
-        <h3 class="score" [ngClass]="{'new-best-score': newBestScore}">Score: {{score}}</h3>
-        <h3 class="best-score" [ngClass]="{'new-best-score': newBestScore}">Best Score: {{best_score}}</h3>
+<div class="game-container">
+  <!--header-->
+  <div class="game-header">
+    <h3 class="logo">SNAKE!</h3>
+
+    <!--cartel perdiste-->
+    <div class="divCenter" align="center" style="margin-bottom:2vh;">
+      <div *ngIf="!jugando" class="divError">
+        <strong>Perdiste!</strong>
       </div>
     </div>
-    <div class="row" *ngFor="let column of board; let i = index;">
-      <div class="column" [ngStyle]="{'background-color': setColors(i, j)}" *ngFor="let row of column; let j = index"></div>
+
+    <!--flex para timer y puntaje-->
+    <div class="flex">
+      <!--puntaje-->
+      <mat-card class="cardReloj" style="margin-right:2vh;">
+        <strong>{{puntos}}</strong>
+      </mat-card>
+
+      <!--timer-->
+      <mat-card class="cardReloj">
+        <strong>{{display}}</strong>
+      </mat-card>
     </div>
-    <div class="start-button" [ngClass]="{'disable-clicks': gameStarted}" (click)="showMenu()">Start Game</div>
-    <div class="new-game-menu" *ngIf="showMenuChecker">
-      <span class="new-game-menu-label">Select Mode</span>
-      <div class="start-button new-game-button" (click)="newGame(mode)" *ngFor="let mode of getKeys(all_modes)">{{all_modes[mode]}}</div>
+
+  </div>
+
+  <!--tablero-->
+  <div class="row" *ngFor="let column of tablero; let i = index;">
+    <div class="column" [ngStyle]="{'background-color': ponerColores(i, j)}" *ngFor="let row of column; let j = index">
     </div>
-  </div>-->
+  </div>
+
+  <!--btns mobile-->
+  <div class="divBtnsMobile">
+    <button mat-fab class="fab" color="accent" (click)="manejadorTecladoMobile(87)">
+      <mat-icon>keyboard_arrow_up</mat-icon>
+    </button>
+    <br>
+    <button mat-fab class="fab" color="accent" (click)="manejadorTecladoMobile(65)">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-fab class="fab" color="accent" (click)="manejadorTecladoMobile(83)">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <button mat-fab class="fab" color="accent" (click)="manejadorTecladoMobile(68)">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <!--btn jugar de nuevo-->
+  <div style="text-align:center;">
+    <button mat-raised-button color="accent" class="btnJugar" (click)="comenzarJuego()" *ngIf="!jugando">Jugar otra
+      vez</button>
+  </div>
+</div>

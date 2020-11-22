@@ -92,6 +92,23 @@
         </tr>
     </table>
 </mat-card>
+
+<mat-card>
+    <mat-card-title>
+        Snake!
+    </mat-card-title>
+    <table>
+        <th>Usuario</th>
+        <th>Tiempo</th>
+        <th>Puntaje máximo</th>
+        <tr *ngFor="let e of est_snake">
+            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.tiempo}}</td>
+            <td>{{e.puntajeM}}</td>
+        </tr>
+    </table>
+</mat-card>
+
 <div class="divSpinner" *ngIf="spinner">
     <div class="spin">
       <img src="../../../assets/gif/preloader.gif">

@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { JuegosService } from "../../services/juegos.service";
 
-export const BOARD_SIZE = 18;
+//Constantes!
+export const TAM_TABLERO = 18;
 
-export const CONTROLS = {
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40
+export const CONTROLES = {
+  IZQ: 65,
+  ARR: 87,
+  DER: 68,
+  AB: 83
 };
 
-export const COLORS = {
-  GAME_OVER: '#D24D57',
-  FRUIT: '#EC644B',
-  HEAD: '#336E7B',
-  BODY: '#C8F7C5',
-  BOARD: '#86B5BD',
-  OBSTACLE: '#383522'
+export const COLORES = {
+  GAME_OVER: '#ff3399',
+  FRUTA: '#f9ff00',
+  CABEZA: '#FF1493',
+  CUERPO: '#FFC0CB',
+  TABLERO: '#DB7093'
 };
-
-export const GAME_MODES = {
-  classic: 'Classic',
-  no_walls: 'No Walls',
-  obstacles: 'Obstacles'
-};
+// /Constantes!
 
 @Component({
   selector: 'app-snake',
@@ -30,24 +26,18 @@ export const GAME_MODES = {
   styleUrls: ['./snake.component.css']
 })
 export class SnakeComponent {
- /* private interval: number;
-  private tempDirection: number;
-  private default_mode = 'classic';
-  private isGameOver = false;
+  private delegadoTeclado;
+  private interval: number;
+  private direccion: number;
+  public perdio = false;
+  public tablero = [];
+  public puntos = 0;
+  public jugando = false;
+  private fecha;
 
-  public all_modes = GAME_MODES;
-  public getKeys = Object.keys;
-  public board = [];
-  public obstacles = [];
-  public score = 0;
-  public showMenuChecker = false;
-  public gameStarted = false;
-  public newBestScore = false;
- // public best_score = this.bestScoreService.retrieve();
-
-  private snake = {
-    direction: CONTROLS.LEFT,
-    parts: [
+  private serpiente = {
+    direction: CONTROLES.DER,
+    partes: [
       {
         x: -1,
         y: -1
@@ -55,244 +45,243 @@ export class SnakeComponent {
     ]
   };
 
-  private fruit = {
+  private fruta = {
     x: -1,
     y: -1
   };
 
-  constructor(
-  //  private bestScoreService: BestScoreManager
-  ) {
-    this.setBoard();
+  time: number = 0;
+  display;
+  intervalTimer;
+
+  constructor(private dbJuegos : JuegosService) {
+    this.delegadoTeclado = this.manejadorTeclado.bind(this);
+    document.addEventListener('keyup', this.delegadoTeclado, false);
+
+    this.armarTablero();
+    this.comenzarJuego();
   }
 
-  handleKeyboardEvents(e: KeyboardEvent, direccion) {
-    
-    if (e.key === CONTROLS.LEFT && this.snake.direction !== CONTROLS.RIGHT) {
-      this.tempDirection = CONTROLS.LEFT;
-    } else if (e.keyCode === CONTROLS.UP && this.snake.direction !== CONTROLS.DOWN) {
-      this.tempDirection = CONTROLS.UP;
-    } else if (e.keyCode === CONTROLS.RIGHT && this.snake.direction !== CONTROLS.LEFT) {
-      this.tempDirection = CONTROLS.RIGHT;
-    } else if (e.keyCode === CONTROLS.DOWN && this.snake.direction !== CONTROLS.UP) {
-      this.tempDirection = CONTROLS.DOWN;
+  manejadorTeclado(e) {
+    if (e.keyCode === CONTROLES.IZQ && this.serpiente.direction !== CONTROLES.DER) {
+      this.direccion = CONTROLES.IZQ;
+    } 
+    else if (e.keyCode === CONTROLES.ARR && this.serpiente.direction !== CONTROLES.AB) {
+      this.direccion = CONTROLES.ARR;
+    } 
+    else if (e.keyCode === CONTROLES.DER && this.serpiente.direction !== CONTROLES.IZQ) {
+      this.direccion = CONTROLES.DER;
+    } 
+    else if (e.keyCode === CONTROLES.AB && this.serpiente.direction !== CONTROLES.ARR) {
+      this.direccion = CONTROLES.AB;
     }
-    console.log(e.key);
   }
 
-  setColors(col: number, row: number): string {
-    if (this.isGameOver) {
-      return COLORS.GAME_OVER;
-    } else if (this.fruit.x === row && this.fruit.y === col) {
-      return COLORS.FRUIT;
-    } else if (this.snake.parts[0].x === row && this.snake.parts[0].y === col) {
-      return COLORS.HEAD;
-    } else if (this.board[col][row] === true) {
-      return COLORS.BODY;
-    } else if (this.default_mode === 'obstacles' && this.checkObstacles(row, col)) {
-      return COLORS.OBSTACLE;
+  manejadorTecladoMobile(keyCode) {
+    if (keyCode === CONTROLES.IZQ && this.serpiente.direction !== CONTROLES.DER) {
+      this.direccion = CONTROLES.IZQ;
+    } 
+    else if (keyCode === CONTROLES.ARR && this.serpiente.direction !== CONTROLES.AB) {
+      this.direccion = CONTROLES.ARR;
+    } 
+    else if (keyCode === CONTROLES.DER && this.serpiente.direction !== CONTROLES.IZQ) {
+      this.direccion = CONTROLES.DER;
+    } 
+    else if (keyCode === CONTROLES.AB && this.serpiente.direction !== CONTROLES.ARR) {
+      this.direccion = CONTROLES.AB;
+    }
+  }
+
+  ponerColores(col: number, row: number): string {
+    if (this.perdio) {
+      return COLORES.GAME_OVER;
+    } 
+    else if (this.fruta.x === row && this.fruta.y === col) {
+      return COLORES.FRUTA;
+    } 
+    else if (this.serpiente.partes[0].x === row && this.serpiente.partes[0].y === col) {
+      return COLORES.CABEZA;
+    } 
+    else if (this.tablero[col][row] === true) {
+      return COLORES.CUERPO;
     }
 
-    return COLORS.BOARD;
+    return COLORES.TABLERO;
   };
 
-  updatePositions(): void {
-    let newHead = this.repositionHead();
-    let me = this;
+  cambiarPosicion(): void {
+    let nuevaCabeza = this.reponerCabeza();
+    let jugador = this;
 
-    if (this.default_mode === 'classic' && this.boardCollision(newHead)) {
-      return this.gameOver();
-    } else if (this.default_mode === 'no_walls') {
-      this.noWallsTransition(newHead);
-    } else if (this.default_mode === 'obstacles') {
-      this.noWallsTransition(newHead);
-      if (this.obstacleCollision(newHead)) {
-        return this.gameOver();
-      }
+    this.moverse(nuevaCabeza);
+
+    if (this.chocarCuerpo(nuevaCabeza)) {
+      return this.perder();
+    }
+    else if (this.chocarFruta(nuevaCabeza)) {
+      this.comerFruta();
     }
 
-    if (this.selfCollision(newHead)) {
-      return this.gameOver();
-    } else if (this.fruitCollision(newHead)) {
-      this.eatFruit();
-    }
+    let colaVieja = this.serpiente.partes.pop();
+    this.tablero[colaVieja.y][colaVieja.x] = false;
 
-    let oldTail = this.snake.parts.pop();
-    this.board[oldTail.y][oldTail.x] = false;
+    this.serpiente.partes.unshift(nuevaCabeza);
+    this.tablero[nuevaCabeza.y][nuevaCabeza.x] = true;
 
-    this.snake.parts.unshift(newHead);
-    this.board[newHead.y][newHead.x] = true;
-
-    this.snake.direction = this.tempDirection;
+    this.serpiente.direction = this.direccion;
 
     setTimeout(() => {
-      me.updatePositions();
+      jugador.cambiarPosicion();
     }, this.interval);
   }
 
-  repositionHead(): any {
-    let newHead = Object.assign({}, this.snake.parts[0]);
+  reponerCabeza(): any {
+    let nuevaCabeza = Object.assign({}, this.serpiente.partes[0]);
 
-    if (this.tempDirection === CONTROLS.LEFT) {
-      newHead.x -= 1;
-    } else if (this.tempDirection === CONTROLS.RIGHT) {
-      newHead.x += 1;
-    } else if (this.tempDirection === CONTROLS.UP) {
-      newHead.y -= 1;
-    } else if (this.tempDirection === CONTROLS.DOWN) {
-      newHead.y += 1;
+    if (this.direccion === CONTROLES.IZQ) {
+      nuevaCabeza.x -= 1;
+    } else if (this.direccion === CONTROLES.DER) {
+      nuevaCabeza.x += 1;
+    } else if (this.direccion === CONTROLES.ARR) {
+      nuevaCabeza.y -= 1;
+    } else if (this.direccion === CONTROLES.AB) {
+      nuevaCabeza.y += 1;
     }
 
-    return newHead;
+    return nuevaCabeza;
   }
 
-  noWallsTransition(part: any): void {
-    if (part.x === BOARD_SIZE) {
-      part.x = 0;
-    } else if (part.x === -1) {
-      part.x = BOARD_SIZE - 1;
+  moverse(pos: any): void {
+    if (pos.x === TAM_TABLERO) {
+      pos.x = 0;
+    } 
+    else if (pos.x === -1) {
+      pos.x = TAM_TABLERO - 1;
     }
 
-    if (part.y === BOARD_SIZE) {
-      part.y = 0;
-    } else if (part.y === -1) {
-      part.y = BOARD_SIZE - 1;
+    if (pos.y === TAM_TABLERO) {
+      pos.y = 0;
+    } 
+    else if (pos.y === -1) {
+      pos.y = TAM_TABLERO - 1;
     }
   }
 
-  addObstacles(): void {
-    let x = this.randomNumber();
-    let y = this.randomNumber();
+  chocarCuerpo(pos: any): boolean {
+    return this.tablero[pos.y][pos.x] === true;
+  }
 
-    if (this.board[y][x] === true || y === 8) {
-      return this.addObstacles();
+  chocarFruta(pos: any): boolean {
+    return pos.x === this.fruta.x && pos.y === this.fruta.y;
+  }
+
+  reiniciarFruta(): void {
+    let x;
+    let y;
+
+    do{
+      x = this.traerNumeroRandom();
+      y = this.traerNumeroRandom();
     }
+    while (this.tablero[y][x] === true);
 
-    this.obstacles.push({
-      x: x,
-      y: y
-    });
-  }
-
-  checkObstacles(x, y): boolean {
-    let res = false;
-
-    this.obstacles.forEach((val) => {
-      if (val.x === x && val.y === y) {
-        res = true;
-      }
-    });
-
-    return res;
-  }
-
-  obstacleCollision(part: any): boolean {
-    return this.checkObstacles(part.x, part.y);
-  }
-
-  boardCollision(part: any): boolean {
-    return part.x === BOARD_SIZE || part.x === -1 || part.y === BOARD_SIZE || part.y === -1;
-  }
-
-  selfCollision(part: any): boolean {
-    return this.board[part.y][part.x] === true;
-  }
-
-  fruitCollision(part: any): boolean {
-    return part.x === this.fruit.x && part.y === this.fruit.y;
-  }
-
-  resetFruit(): void {
-    let x = this.randomNumber();
-    let y = this.randomNumber();
-
-    if (this.board[y][x] === true || this.checkObstacles(x, y)) {
-      return this.resetFruit();
-    }
-
-    this.fruit = {
+    this.fruta = {
       x: x,
       y: y
     };
   }
 
-  eatFruit(): void {
-    this.score++;
+  comerFruta(): void {
+    this.puntos+=15;
 
-    let tail = Object.assign({}, this.snake.parts[this.snake.parts.length - 1]);
+    let cola = Object.assign({}, this.serpiente.partes[this.serpiente.partes.length - 1]);
 
-    this.snake.parts.push(tail);
-    this.resetFruit();
+    this.serpiente.partes.push(cola);
+    this.reiniciarFruta();
 
-    if (this.score % 5 === 0) {
-      this.interval -= 15;
+    if (this.puntos % 5 === 0) {
+      this.interval -= 3;
     }
   }
 
-  gameOver(): void {
-    this.isGameOver = true;
-    this.gameStarted = false;
+  perder(): void {
+    this.perdio = true;
+    this.jugando = false;
     let me = this;
 
-    if (this.score > this.best_score) {
-      this.bestScoreService.store(this.score);
-      this.best_score = this.score;
-      this.newBestScore = true;
+    if(this.puntos != 0){
+      let fechaTermino = Date.now();
+      let tiempoTardado = fechaTermino - this.fecha;
+      this.dbJuegos.guardarPartidaSnake(tiempoTardado, this.puntos);
     }
 
-    setTimeout(() => {
-      me.isGameOver = false;
-    }, 500);
-
-    this.setBoard();
+    this.pauseTimer();
+    this.armarTablero();
   }
 
-  randomNumber(): any {
-    return Math.floor(Math.random() * BOARD_SIZE);
+  traerNumeroRandom(): any {
+    return Math.floor(Math.random() * TAM_TABLERO);
   }
 
-  setBoard(): void {
-    this.board = [];
+  armarTablero(): void {
+    this.tablero = [];
 
-    for (let i = 0; i < BOARD_SIZE; i++) {
-      this.board[i] = [];
-      for (let j = 0; j < BOARD_SIZE; j++) {
-        this.board[i][j] = false;
+    for (let i = 0; i < TAM_TABLERO; i++) {
+      this.tablero[i] = [];
+      for (let j = 0; j < TAM_TABLERO; j++) {
+        this.tablero[i][j] = false;
       }
     }
   }
 
-  showMenu(): void {
-    this.showMenuChecker = !this.showMenuChecker;
-  }
 
-  newGame(mode: string): void {
-    this.default_mode = mode || 'classic';
-    this.showMenuChecker = false;
-    this.newBestScore = false;
-    this.gameStarted = true;
-    this.score = 0;
-    this.tempDirection = CONTROLS.LEFT;
-    this.isGameOver = false;
+  comenzarJuego(): void {
+    console.log("entra");
+    this.jugando = true;
+    this.puntos = 0;
+    this.direccion = CONTROLES.DER;
+    this.perdio = false;
     this.interval = 150;
-    this.snake = {
-      direction: CONTROLS.LEFT,
-      parts: []
+    this.serpiente = {
+      direction: CONTROLES.DER,
+      partes: []
     };
 
     for (let i = 0; i < 3; i++) {
-      this.snake.parts.push({ x: 8 + i, y: 8 });
+      this.serpiente.partes.push({ x: 8 + i, y: 8 });
     }
 
-    if (mode === 'obstacles') {
-      this.obstacles = [];
-      let j = 1;
-      do {
-        this.addObstacles();
-      } while (j++ < 9);
-    }
+    this.reiniciarFruta();
+    this.cambiarPosicion();
+    this.reiniciarTimer();
+    this.fecha = Date.now(); 
+  }
 
-    this.resetFruit();
-    this.updatePositions();
-  }*/
+  
+  reiniciarTimer(){
+    this.pauseTimer();
+    this.time = 0;
+    this.startTimer();
+  }
+
+  startTimer() {
+    this.intervalTimer = setInterval(() => {
+      if(this.time === 0){
+        this.time++;
+      }else
+      {
+        this.time++;
+      }
+      this.display = this.transform(this.time)
+    }, 1000);
+  }
+  
+  transform(value: number): string {
+       const minutes: number = Math.floor(value / 60);
+       return minutes + ':' + (value - minutes * 60);
+  }
+
+  pauseTimer() {
+    clearInterval(this.intervalTimer);
+  }
 }

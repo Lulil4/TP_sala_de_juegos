@@ -105,6 +105,29 @@ export class JuegosService {
     });
   }
 
+  guardarPartidaSnake(tiempo, puntaje){
+    let email = this.auth.getUser();
+    this.traerUsuario(email).subscribe((u : any)=>{
+      if (u[0].correo == email){
+        this.db.collection("snake").doc(this.auth.getUser() + Date.now()).set({
+          user: u[0].usuario,
+          tiempo : tiempo,
+          puntaje : puntaje,
+          email : this.auth.getUser(),
+          fecha: Date.now()
+        });
+      }
+    });
+  }
+
+  traerPartidaSnakeEmail(email){
+    return this.db.collection("snake", ref => ref.where("email", "==", email)).valueChanges();
+  }
+
+  traerPartidasSnake(){
+    return this.db.collection("snake").valueChanges();
+  }
+
   traerPartidasAnagramaEmail(email){
     return this.db.collection("anagrama", ref => ref.where("email", "==", email)).valueChanges();
   }
