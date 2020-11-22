@@ -30,15 +30,14 @@ export class AnagramaComponent implements OnInit {
     this.palabras.push("GALGO");
     this.palabras.push("LABRADOR");
     this.palabras.push("WEIRMARANER");
-
+    this.palabras.push("SIMONE");
     this.palabras.push("SALCHICHA");
     this.palabras.push("PITBULL");
-    this.palabras.push("RETRIEVER");
     this.intentoPalabra = "";
     this.error = false;
     this.gano = false;
     this.contIntentos = 0;
-    let rand = Math.random() * (8 - 0) + 0;
+    let rand = Math.random() * (9 - 0) + 0;
     let iPalabra = Math.floor(rand);
     this.tiempoStart = Date.now();
 
