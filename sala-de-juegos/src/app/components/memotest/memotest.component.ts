@@ -43,21 +43,14 @@ export class MemotestComponent implements OnInit {
   constructor(private juegosService : JuegosService) { }
 
   ngOnInit(): void {
-    let cols = (window.innerWidth <= 500) ? 2 : 6;
-    if (cols == 6){
-      cols = (window.innerWidth <= 900) ? 3 : 6;
-    }
+    let cols = (window.innerWidth <= 500) ? 3 : 6;
     this.breakpoint = cols;
 
     this.jugarOtraVez();
   }
 
   onResize(event) {
-    let cols = (event.target.innerWidth <= 400) ? 2 : 6;
-
-    if (cols == 6){
-      cols = (window.innerWidth <= 900) ? 3 : 6;
-    }
+    let cols = (event.target.innerWidth <= 400) ? 3 : 6;
 
     this.breakpoint = cols;
   }
