@@ -5,11 +5,11 @@
 }
 
 mat-toolbar{
-    background-image: linear-gradient(to right, rgb(255, 74, 113),rgb(255, 167, 229));
+    background-image: linear-gradient(to right, rgb(255, 104, 137),rgb(255, 167, 229));
 }
 
 button{
-    color: black;
+    color: rgb(44, 44, 44);
 }
 
 button:hover{
@@ -17,5 +17,5 @@ button:hover{
 }
 
 mat-icon{
-    color:rgb(189, 0, 72);
+    color:rgb(255, 0, 98);
 }

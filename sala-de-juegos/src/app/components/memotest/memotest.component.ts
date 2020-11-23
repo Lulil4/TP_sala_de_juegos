@@ -22,6 +22,8 @@ export class MemotestComponent implements OnInit {
   time: number = 0;
   display;
   interval;
+  
+  breakpoint = 0;
 
   cartas = [
     {nombre: "felipe", foto:"../../../assets/img/memotest/felipe.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
@@ -30,12 +32,23 @@ export class MemotestComponent implements OnInit {
     {nombre: "lobo", foto:"../../../assets/img/memotest/lobo.jpg", colorJugador : "", bloqueoPropio:false, par : false},
     {nombre: "felipe", foto:"../../../assets/img/memotest/felipe.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
     {nombre: "coca", foto:"../../../assets/img/memotest/coca.jpg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "simone", foto:"../../../assets/img/memotest/simone.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "nano", foto:"../../../assets/img/memotest/nano.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "simone", foto:"../../../assets/img/memotest/simone.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "nano", foto:"../../../assets/img/memotest/nano.jpeg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "floki", foto:"../../../assets/img/PITBULL.jpg", colorJugador : "", bloqueoPropio:false, par : false},
+    {nombre: "floki", foto:"../../../assets/img/PITBULL.jpg", colorJugador : "", bloqueoPropio:false, par : false},
   ]
   
   constructor(private juegosService : JuegosService) { }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 400) ? 3 : 6;
     this.jugarOtraVez();
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 3 : 6;
   }
 
   jugarOtraVez(){
@@ -149,10 +162,12 @@ export class MemotestComponent implements OnInit {
     }
     else if(this.paresUsuario < this.paresPC){
       this.textoResultado = "Perdiste chiquitin"
+      this.pauseTimer();
       this.juegosService.guardarPartidaMemotest(tiempoTardado, "perdido", this.intentos);
 
     }
     else if (this.paresUsuario == this.paresPC){
+      this.pauseTimer();
       this.juegosService.guardarPartidaMemotest(tiempoTardado, "empatado", this.intentos);
 
     }

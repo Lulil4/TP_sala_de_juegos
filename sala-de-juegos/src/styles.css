@@ -2,7 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  
-    background-image: url("https://fourlonglegs.com/wp-content/uploads/2020/04/unsplash-greyhound-scaled-e1586241026883.jpg");
-    background-size: cover;
+    background-image: url("./assets//img//shibainu.jpg");
+    
     background-position: center center;
+    background-repeat: repeat;
 }

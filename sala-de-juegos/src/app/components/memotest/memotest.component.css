@@ -1,6 +1,6 @@
 
 mat-grid-list{
-    width: 60vw;
+    width: 80vw;
 }
 
 mat-grid-tile{
@@ -10,17 +10,18 @@ mat-grid-tile{
 
 
 .divGrid{
-    height:50vw;
+    width:80vw;
     margin-top:2vw;
     margin-bottom:2vw;
     display:flex;
     justify-content: center;
+    column-rule-width: 1024;
 }
 
 h2{
+    font-size:xx-large;
     text-align: center;
     color:rgb(255, 43, 142);
-    font-size: 4vw;
     font-weight: bolder;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
@@ -58,3 +59,4 @@ button{
     justify-content: center;
     text-align:center;
 }
+

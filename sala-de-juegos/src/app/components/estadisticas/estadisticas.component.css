@@ -8,12 +8,25 @@ table{
 mat-card{
     width:85vw;
     margin-bottom:5vh;
-    background-color: burlywood;
+    background-color: rgb(255, 146, 213);
 }
 
-.divEmail{
-    width:25vw;
-    word-wrap: break-word;
+mat-card-title{
+    font-size:large;
+    text-align: center;
+    color: rgb(212, 99, 142);
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+th{
+    font-size:large;
+    text-align: center;
+    color: rgb(236, 170, 84);
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .spin{
@@ -24,6 +37,14 @@ mat-card{
     z-index: 9999;
 }
 
+tr{
+    font-size:large;
+    text-align: center;
+    color: rgb(255, 219, 243);
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
 
 .divSpinner{
     position: fixed;

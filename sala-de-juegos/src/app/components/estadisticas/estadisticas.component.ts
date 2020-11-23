@@ -53,7 +53,7 @@ export class EstadisticasComponent implements OnInit {
     this.spinner = true;
     setTimeout(() => {
       this.spinner = false;
-    }, 3000);
+    }, 6000);
   }
 
   traerPartidasSnake(){
@@ -82,6 +82,20 @@ export class EstadisticasComponent implements OnInit {
         this.est_snake.push(est);
       }
     });
+    setTimeout(() => {
+      this.est_snake.sort(this.sortSnakePuntajeM);
+    }, 2000);
+  }
+
+  sortSnakePuntajeM(a, b){
+    let retorno = 0;
+    if(a.puntajeM > b.puntajeM){
+      retorno = -1;
+    }
+    if(a.puntajeM < b.puntajeM){
+      retorno = 1;
+    }
+    return retorno;
   }
 
   traerEstAdivinarElNumero() {

@@ -8,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class JuegosComponent implements OnInit {
 
   hide : boolean = false;
+  breakpoint = 0;
 
   constructor() { 
     this.hide = false;}
 
   ngOnInit(): void {
+    let cols = (window.innerWidth <= 400) ? 2 : 6;
+    if (cols == 6){
+      cols = (window.innerWidth <= 800) ? 3 : 7;
+    }
+    this.breakpoint = cols;
     this.hide = false;
 
   }
@@ -24,4 +30,15 @@ export class JuegosComponent implements OnInit {
   scrollTop(){
     window.scroll(0,0);
   }
+  
+  onResize(event) {
+    let cols = (event.target.innerWidth <= 400) ? 2 : 6;
+
+    if (cols == 6){
+      cols = (window.innerWidth <= 800) ? 3 : 7;
+    }
+
+    this.breakpoint = cols;
+  }
+
 }

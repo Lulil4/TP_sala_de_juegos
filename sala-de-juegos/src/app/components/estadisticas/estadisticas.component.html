@@ -7,7 +7,7 @@
         <th>Arma más usada</th>
         <th>Win rate</th>
         <tr *ngFor="let e of est_piedrapapelotijeras">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.arma}}</td>
             <td>{{e.resultado}} % </td>
         </tr>
@@ -22,7 +22,7 @@
         <th>Tiempo promedio</th>
         <th>Win rate</th>
         <tr *ngFor="let e of est_tateti">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td><div >{{e.user}}</div></td>
             <td>{{e.tiempo}}</td>
             <td>{{e.resultado}} %</td>
         </tr>
@@ -38,7 +38,7 @@
         <th>Promedio de intentos</th>
         <th>Win rate</th>
         <tr *ngFor="let e of est_memotest">
-            <td><div style="width:20vw; word-wrap: break-word; text-align:center">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.tiempo}}</td>
             <td>{{e.intentos}}</td>
             <td>% {{e.resultado}}</td>
@@ -54,7 +54,7 @@
         <th>Tiempo promedio</th>
         <th>Promedio de intentos</th>
         <tr *ngFor="let e of est_adivinarelnumero">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.tiempo}}</td>
             <td>{{e.intentos}}</td>
         </tr>
@@ -70,7 +70,7 @@
         <th>Tiempo promedio</th>
         <th>Promedio de intentos</th>
         <tr *ngFor="let e of est_anagrama">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.tiempo}}</td>
             <td>{{e.intentos}}</td>
         </tr>
@@ -86,7 +86,7 @@
         <th>Tiempo promedio</th>
         <th>Promedio de intentos</th>
         <tr *ngFor="let e of est_agilidadAritmetica">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.tiempo}}</td>
             <td>{{e.intentos}}</td>
         </tr>
@@ -102,7 +102,7 @@
         <th>Tiempo</th>
         <th>Puntaje máximo</th>
         <tr *ngFor="let e of est_snake">
-            <td><div class="divEmail">{{e.user}}</div></td>
+            <td>{{e.user}}</td>
             <td>{{e.tiempo}}</td>
             <td>{{e.puntajeM}}</td>
         </tr>
