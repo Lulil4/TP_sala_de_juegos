@@ -7,7 +7,7 @@ import { ItemsToolbarService } from './services/items-toolbar.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sala-de-juegos';
+  title = 'Corre Coscacha';
 
   constructor(private auth : AuthService, private toolbar : ItemsToolbarService){
       this.auth.verificarLogueo().then(res=>{
