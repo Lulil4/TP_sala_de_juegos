@@ -31,6 +31,9 @@ placeholder{
     z-index: 9999;
 }
 
+input{
+    text-align:center;
+}
 
 .divSpinner{
     position: fixed;
