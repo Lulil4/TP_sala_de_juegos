@@ -34,6 +34,7 @@ export class SnakeComponent {
   public puntos = 0;
   public jugando = false;
   private fecha;
+  public mensajeWASD = true;
 
   private serpiente = {
     direction: CONTROLES.DER,
@@ -63,6 +64,7 @@ export class SnakeComponent {
   }
 
   manejadorTeclado(e) {
+    this.mensajeWASD = false;
     if (e.keyCode === CONTROLES.IZQ && this.serpiente.direction !== CONTROLES.DER) {
       this.direccion = CONTROLES.IZQ;
     } 
@@ -74,6 +76,9 @@ export class SnakeComponent {
     } 
     else if (e.keyCode === CONTROLES.AB && this.serpiente.direction !== CONTROLES.ARR) {
       this.direccion = CONTROLES.AB;
+    }
+    else{
+      this.mensajeWASD = true;
     }
   }
 
@@ -200,7 +205,7 @@ export class SnakeComponent {
     this.reiniciarFruta();
 
     if (this.puntos % 5 === 0) {
-      this.interval -= 3;
+      this.interval -= 5;
     }
   }
 
@@ -241,7 +246,7 @@ export class SnakeComponent {
     this.puntos = 0;
     this.direccion = CONTROLES.DER;
     this.perdio = false;
-    this.interval = 150;
+    this.interval = 200;
     this.serpiente = {
       direction: CONTROLES.DER,
       partes: []
