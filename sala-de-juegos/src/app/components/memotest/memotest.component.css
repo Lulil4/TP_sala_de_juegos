@@ -15,7 +15,10 @@ mat-grid-tile{
     margin-bottom:2vw;
     display:flex;
     justify-content: center;
-    column-rule-width: 1024;
+}
+
+img{
+    width:95%;
 }
 
 h2{

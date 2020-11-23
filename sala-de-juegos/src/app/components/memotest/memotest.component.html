@@ -10,7 +10,7 @@
 </div>
 <div class="divGrid">
     <mat-grid-list rowHeight="1:1" gutterSize="15px"  [cols]="breakpoint" (window:resize)="onResize($event)">
-        <mat-grid-tile *ngFor="let carta of cartas; let i = index" class="col col-sm-3 col-s-8">
+        <mat-grid-tile *ngFor="let carta of cartas; let i = index">
             <app-carta [bloqueoPropio]="carta.bloqueoPropio" [cartaElegida]="carta" (click)="hacerMovimiento(i)"></app-carta>
         </mat-grid-tile>
     </mat-grid-list>

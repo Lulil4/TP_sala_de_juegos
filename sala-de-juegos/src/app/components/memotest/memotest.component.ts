@@ -43,13 +43,25 @@ export class MemotestComponent implements OnInit {
   constructor(private juegosService : JuegosService) { }
 
   ngOnInit(): void {
-    this.breakpoint = (window.innerWidth <= 400) ? 3 : 6;
+    let cols = (window.innerWidth <= 500) ? 2 : 6;
+    if (cols == 6){
+      cols = (window.innerWidth <= 900) ? 3 : 6;
+    }
+    this.breakpoint = cols;
+
     this.jugarOtraVez();
   }
 
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 3 : 6;
+    let cols = (event.target.innerWidth <= 400) ? 2 : 6;
+
+    if (cols == 6){
+      cols = (window.innerWidth <= 900) ? 3 : 6;
+    }
+
+    this.breakpoint = cols;
   }
+  
 
   jugarOtraVez(){
     this.bloqueoJugar = true;
@@ -109,11 +121,11 @@ export class MemotestComponent implements OnInit {
   }
 
   turnoPC(){
-    let rand = Math.random() * (6 - 0) + 0;  
+    let rand = Math.random() * (13 - 0) + 0;  
     let indexCarta = Math.floor(rand);
     let i = 0;
     for(i=0; i<1000; i++){
-      rand = Math.random() * (6 - 0) + 0;  
+      rand = Math.random() * (13 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
         console.log(indexCarta); 
@@ -125,7 +137,7 @@ export class MemotestComponent implements OnInit {
     }
 
     for(i=0; i<1000; i++){
-      rand = Math.random() * (6 - 0) + 0;  
+      rand = Math.random() * (13 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
         console.log(indexCarta); 

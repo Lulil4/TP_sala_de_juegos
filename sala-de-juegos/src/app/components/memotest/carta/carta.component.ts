@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   <img [src]="cartaElegida.foto" *ngIf="cartaElegida.colorJugador" >
   </button>
 `,
-styles: ['button{width: 20vw; height: 20vw; pointer:click; border-radius:2vw;} img{ width: 100%; height: 80%; border-radius:2vw;} } @media (max-width: 500px) { button{padding-left:1px;}}']
+styles: ['button{pointer:click; border-radius:2vw;} img{ width: 100%; height: 80%; border-radius:2vw;} } @media (max-width: 500px) { button{padding-left:1px;}}']
 })
 export class CartaComponent implements OnInit{
 
