@@ -15,8 +15,8 @@ export class JuegosComponent implements OnInit {
 
   ngOnInit(): void {
     let cols = (window.innerWidth <= 900) ? 3 : 6;
-    if (cols == 6){
-      cols = (window.innerWidth <= 500) ? 2 : 6;
+    if (window.innerWidth <= 500){
+      cols =  2;
     }
     this.breakpoint = cols;
     this.hide = false;
@@ -34,8 +34,8 @@ export class JuegosComponent implements OnInit {
   onResize(event) {
     let cols = (event.target.innerWidth <= 900) ? 3 : 6;
 
-    if (cols == 6){
-      cols = (window.innerWidth <= 500) ? 2 : 6;
+    if (window.innerWidth <= 500){
+      cols = 2;
     }
 
     this.breakpoint = cols;
