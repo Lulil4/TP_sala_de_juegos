@@ -1,5 +1,21 @@
 <mat-card>
     <mat-card-title>
+        Snake!
+    </mat-card-title>
+    <table>
+        <th>Usuario</th>
+        <th>Tiempo</th>
+        <th>Puntaje máximo</th>
+        <tr *ngFor="let e of est_snake">
+            <td>{{e.user}}</td>
+            <td>{{e.tiempo}}</td>
+            <td>{{e.puntajeM}}</td>
+        </tr>
+    </table>
+</mat-card>
+
+<mat-card>
+    <mat-card-title>
         Piedra papel o tijeras
     </mat-card-title>
     <table>
@@ -13,6 +29,7 @@
         </tr>
     </table>
 </mat-card>
+
 <mat-card>
     <mat-card-title>
         Ta Te Ti
@@ -22,12 +39,15 @@
         <th>Tiempo promedio</th>
         <th>Win rate</th>
         <tr *ngFor="let e of est_tateti">
-            <td><div >{{e.user}}</div></td>
+            <td>
+                <div>{{e.user}}</div>
+            </td>
             <td>{{e.tiempo}}</td>
             <td>{{e.resultado}} %</td>
         </tr>
     </table>
 </mat-card>
+
 <mat-card>
     <mat-card-title>
         Memotest
@@ -45,6 +65,7 @@
         </tr>
     </table>
 </mat-card>
+
 <mat-card>
     <mat-card-title>
         Adivinar el numero
@@ -93,24 +114,8 @@
     </table>
 </mat-card>
 
-<mat-card>
-    <mat-card-title>
-        Snake!
-    </mat-card-title>
-    <table>
-        <th>Usuario</th>
-        <th>Tiempo</th>
-        <th>Puntaje máximo</th>
-        <tr *ngFor="let e of est_snake">
-            <td>{{e.user}}</td>
-            <td>{{e.tiempo}}</td>
-            <td>{{e.puntajeM}}</td>
-        </tr>
-    </table>
-</mat-card>
-
 <div class="divSpinner" *ngIf="spinner">
     <div class="spin">
-      <img src="../../../assets/gif/preloader.gif">
+        <img src="../../../assets/gif/preloader.gif">
     </div>
 </div>

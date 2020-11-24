@@ -1,19 +1,21 @@
-mat-card{
+.cardAdivinador{
     text-align:center;
     background-color: palevioletred;
+    width:40vw;
+    height:70vh;
 }
 
 mat-card-title{
     padding-top:2vw;
     color:white;
-    font-size:4vw;
+    font-size:xx-large;
 }
 
 mat-card-subtitle{
     padding-top:2vw;
     color:rgb(0, 0, 0);
     font-weight: 500;
-    font-size:2vw;
+    font-size:large;
 }
 
 input{
@@ -40,11 +42,8 @@ mat-label{
     background-color: rgb(255, 185, 228) !important;
 } 
 
-mat-card-subtitle{
-    font-size: 3vw;
-}
 p{
-    font-size:3vw;
+    font-size:x-large;
     font-style: italic;
 }
 
@@ -67,6 +66,7 @@ p{
     width:40vw;
     min-height: 3vh;
     font-size:xx-large;
+    text-align:center;
 }
 
 .flex{
@@ -76,5 +76,13 @@ p{
 
 button{
     font-size:x-large;
-    margin:1vh;
+    padding:1vh;
+}
+
+@media (max-width: 1000px){
+    .cardAdivinador{
+        width:80vw;
+        height:auto;
+    }
+
 }

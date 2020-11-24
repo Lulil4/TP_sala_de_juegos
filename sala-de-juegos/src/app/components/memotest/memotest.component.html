@@ -1,5 +1,9 @@
 <div class="flex">
-    <h2>Jugador 1: {{paresUsuario}} <span>PC: {{paresPC}}</span></h2>  
+    <div>
+        <h2>Jugador 1: {{paresUsuario}}</h2>
+        <br>
+        <h2><span>PC: {{paresPC}}</span></h2> 
+    </div>
     <button mat-raised-button color="accent" (click)="jugarOtraVez();" [disabled]="bloqueoJugar">Jugar otra vez</button>
 </div> 
 <div [hidden]="ocultarResultado">

@@ -1,25 +1,37 @@
-<div class="container"> 
-    <mat-card>
+<div class="container" align="center"> 
+
+    <mat-card class="cardAdivinador">
+
         <mat-card-title>Podrás adivinarlo?</mat-card-title>
+
         <mat-card-subtitle>Psst, será un numero entre el 1 y el 100</mat-card-subtitle>
+
         <mat-card-content>
+
             <mat-form-field>
                 <mat-label>Elige un número!</mat-label>
-                <input matInput type="text"  [(ngModel)]="numeroIngresado" name="numerito">
+                <input matInput type="number"  [(ngModel)]="numeroIngresado" name="numerito">
             </mat-form-field>
+
             <p>
                 <button mat-raised-button class="btnChequear" color="accent" (click)="verificarIntento()" *ngIf="mostrarChequear">Chequear</button>
             </p>
-            <div> 
+
             <p>Elegiste... {{numeroIngresado}}</p> 
-            </div>
+
             <p  class="pMid" *ngIf="casi">{{mensajeCasi}}</p>
+
             <p *ngIf="ganador">Ganaste!</p> 
+
             <p class="pBott">Cantidad de intentos:<span>{{contIntentos}}</span></p> 
+
             <button mat-raised-button class="btnOtra" style="margin-bottom:4vw;" color="primary" (click)="iniciar()">Quiero uno nuevo!</button> 
         </mat-card-content>
+
     </mat-card>
+
 </div> 
+
 <div class="flex">
     <mat-card class="cardReloj">
         <strong>{{display}}</strong>

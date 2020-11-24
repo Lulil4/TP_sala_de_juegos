@@ -51,7 +51,6 @@ export class MemotestComponent implements OnInit {
 
   onResize(event) {
     let cols = (event.target.innerWidth <= 900) ? 3 : 6;
-
     this.breakpoint = cols;
   }
   
@@ -114,14 +113,13 @@ export class MemotestComponent implements OnInit {
   }
 
   turnoPC(){
-    let rand = Math.random() * (13 - 0) + 0;  
+    let rand = Math.random() * (12 - 0) + 0;  
     let indexCarta = Math.floor(rand);
     let i = 0;
     for(i=0; i<1000; i++){
-      rand = Math.random() * (13 - 0) + 0;  
+      rand = Math.random() * (12 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
-        console.log(indexCarta); 
         this.cartas[indexCarta].colorJugador = "accent";
         this.cartas[indexCarta].bloqueoPropio = true;
         this.cartasDadasVuelta.push(this.cartas[indexCarta]);   
@@ -130,18 +128,16 @@ export class MemotestComponent implements OnInit {
     }
 
     for(i=0; i<1000; i++){
-      rand = Math.random() * (13 - 0) + 0;  
+      rand = Math.random() * (12 - 0) + 0;  
       indexCarta = Math.floor(rand);
       if (this.cartas[indexCarta].colorJugador == ""){
-        console.log(indexCarta); 
         this.cartas[indexCarta].colorJugador = "accent";
         this.cartas[indexCarta].bloqueoPropio = true;
         this.cartasDadasVuelta.push(this.cartas[indexCarta]);
         break; 
       }
     }
-
-    console.log("sgte");
+    
     setTimeout(() => {
       if (this.verificarPar()){ 
         this.paresPC++;

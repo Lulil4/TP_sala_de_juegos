@@ -1,7 +1,8 @@
 mat-card{
     background-color:rgba(255, 124, 205, 0.719);
-    width:40vw;
+    width:20vw;
     text-align:center;
+    height:10vw;
 }
 
 h2{
@@ -9,4 +10,21 @@ h2{
     vertical-align: middle;
     line-height: 10vw;
     font-size:x-large;
+}
+
+img{
+    height:30vw;
+    width:30vw;
+}
+
+
+@media (max-width: 1000px){
+    mat-card{
+        width:40vw;
+    }
+    
+img{
+    height:80vw;
+    width:80vw;
+}
 }
